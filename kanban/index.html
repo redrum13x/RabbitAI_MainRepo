@@ -490,6 +490,43 @@
       color: var(--accent);
     }
 
+    /* Passcode modal */
+    .passcode-input {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+
+    .passcode-digit {
+      width: 50px;
+      height: 60px;
+      font-size: 1.5rem;
+      text-align: center;
+      background: var(--bg-primary);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: monospace;
+    }
+
+    .passcode-digit:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .passcode-error {
+      color: var(--priority-critical);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      min-height: 1.5rem;
+    }
+
+    .lock-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
     /* Setup modal */
     .setup-section {
       text-align: center;
@@ -749,30 +786,197 @@
     </div>
   </div>
 
+  <!-- Passcode Modal -->
+  <div class="modal-overlay" id="passcodeModal">
+    <div class="modal" style="max-width: 400px;">
+      <div class="modal-header">
+        <h2 id="passcodeTitle">🔒 Enter Passcode</h2>
+      </div>
+      <div class="modal-body">
+        <div class="setup-section">
+          <div class="lock-icon">🔐</div>
+          <p id="passcodePrompt">Enter your 4-digit passcode to unlock the board.</p>
+          <div class="passcode-input">
+            <input type="password" class="passcode-digit" maxlength="1" data-index="0" inputmode="numeric" pattern="[0-9]">
+            <input type="password" class="passcode-digit" maxlength="1" data-index="1" inputmode="numeric" pattern="[0-9]">
+            <input type="password" class="passcode-digit" maxlength="1" data-index="2" inputmode="numeric" pattern="[0-9]">
+            <input type="password" class="passcode-digit" maxlength="1" data-index="3" inputmode="numeric" pattern="[0-9]">
+          </div>
+          <div class="passcode-error" id="passcodeError"></div>
+          <button class="btn" id="submitPasscodeBtn" style="margin-top: 1rem;">Unlock</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Configuration
     const API_BASE = 'https://jsonblob.com/api/jsonBlob';
     const STORAGE_KEY = 'rabbit-board-id';
+    const PASSCODE_KEY = 'rabbit-board-passcode';
+    const VERIFIER_STRING = 'RABBIT_BOARD_VERIFIED';
     
     // State
     let boardId = null;
     let tasks = [];
     let taskCounter = 0;
     let isSyncing = false;
+    let encryptionKey = null;
+    let isSettingPasscode = false;
 
     // Elements
     const board = document.getElementById('board');
     const taskModal = document.getElementById('taskModal');
     const setupModal = document.getElementById('setupModal');
     const shareModal = document.getElementById('shareModal');
+    const passcodeModal = document.getElementById('passcodeModal');
     const syncStatus = document.getElementById('syncStatus');
     const searchBox = document.getElementById('searchBox');
     const filterAssignee = document.getElementById('filterAssignee');
     const filterPriority = document.getElementById('filterPriority');
     const filterLabel = document.getElementById('filterLabel');
 
+    // ==================== ENCRYPTION HELPERS ====================
+    
+    // Convert string to ArrayBuffer
+    function str2ab(str) {
+      const encoder = new TextEncoder();
+      return encoder.encode(str);
+    }
+    
+    // Convert ArrayBuffer to string
+    function ab2str(buf) {
+      const decoder = new TextDecoder();
+      return decoder.decode(buf);
+    }
+    
+    // Convert ArrayBuffer to base64
+    function ab2base64(buf) {
+      return btoa(String.fromCharCode(...new Uint8Array(buf)));
+    }
+    
+    // Convert base64 to ArrayBuffer
+    function base642ab(base64) {
+      const binary = atob(base64);
+      const buf = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        buf[i] = binary.charCodeAt(i);
+      }
+      return buf;
+    }
+    
+    // Derive encryption key from passcode using PBKDF2
+    async function deriveKey(passcode, salt) {
+      const keyMaterial = await crypto.subtle.importKey(
+        'raw',
+        str2ab(passcode),
+        'PBKDF2',
+        false,
+        ['deriveBits', 'deriveKey']
+      );
+      
+      return crypto.subtle.deriveKey(
+        {
+          name: 'PBKDF2',
+          salt: salt,
+          iterations: 100000,
+          hash: 'SHA-256'
+        },
+        keyMaterial,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['encrypt', 'decrypt']
+      );
+    }
+    
+    // Encrypt data
+    async function encryptData(data, key) {
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const encoded = str2ab(JSON.stringify(data));
+      
+      const ciphertext = await crypto.subtle.encrypt(
+        { name: 'AES-GCM', iv: iv },
+        key,
+        encoded
+      );
+      
+      return {
+        iv: ab2base64(iv),
+        ciphertext: ab2base64(ciphertext)
+      };
+    }
+    
+    // Decrypt data
+    async function decryptData(encrypted, key) {
+      const iv = base642ab(encrypted.iv);
+      const ciphertext = base642ab(encrypted.ciphertext);
+      
+      const decrypted = await crypto.subtle.decrypt(
+        { name: 'AES-GCM', iv: iv },
+        key,
+        ciphertext
+      );
+      
+      return JSON.parse(ab2str(decrypted));
+    }
+    
+    // Get passcode from input fields
+    function getPasscodeFromInputs() {
+      const digits = document.querySelectorAll('.passcode-digit');
+      return Array.from(digits).map(d => d.value).join('');
+    }
+    
+    // Clear passcode inputs
+    function clearPasscodeInputs() {
+      document.querySelectorAll('.passcode-digit').forEach(d => d.value = '');
+      document.getElementById('passcodeError').textContent = '';
+    }
+    
+    // Setup passcode input behavior
+    function setupPasscodeInputs() {
+      const digits = document.querySelectorAll('.passcode-digit');
+      
+      digits.forEach((digit, index) => {
+        digit.addEventListener('input', (e) => {
+          // Only allow numbers
+          e.target.value = e.target.value.replace(/[^0-9]/g, '');
+          
+          if (e.target.value && index < 3) {
+            digits[index + 1].focus();
+          }
+          
+          // Auto-submit when all 4 digits entered
+          if (getPasscodeFromInputs().length === 4) {
+            document.getElementById('submitPasscodeBtn').click();
+          }
+        });
+        
+        digit.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !e.target.value && index > 0) {
+            digits[index - 1].focus();
+          }
+        });
+        
+        digit.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const paste = (e.clipboardData || window.clipboardData).getData('text');
+          const numbers = paste.replace(/[^0-9]/g, '').slice(0, 4);
+          
+          numbers.split('').forEach((num, i) => {
+            if (digits[i]) digits[i].value = num;
+          });
+          
+          if (numbers.length === 4) {
+            document.getElementById('submitPasscodeBtn').click();
+          }
+        });
+      });
+    }
+
     // Initialize
     async function init() {
+      setupPasscodeInputs();
+      
       // Check URL for board ID
       const urlParams = new URLSearchParams(window.location.search);
       const urlBoardId = urlParams.get('board');
@@ -785,12 +989,177 @@
       }
 
       if (boardId) {
-        await loadFromCloud();
+        // Show passcode modal to decrypt
+        showPasscodeModal(false);
       } else {
         setupModal.classList.add('active');
       }
 
       setupEventListeners();
+    }
+    
+    // Show passcode modal
+    function showPasscodeModal(isNew) {
+      isSettingPasscode = isNew;
+      clearPasscodeInputs();
+      
+      if (isNew) {
+        document.getElementById('passcodeTitle').textContent = '🔒 Set Passcode';
+        document.getElementById('passcodePrompt').textContent = 'Create a 4-digit passcode to protect your board.';
+      } else {
+        document.getElementById('passcodeTitle').textContent = '🔒 Enter Passcode';
+        document.getElementById('passcodePrompt').textContent = 'Enter your 4-digit passcode to unlock the board.';
+      }
+      
+      passcodeModal.classList.add('active');
+      document.querySelector('.passcode-digit').focus();
+    }
+    
+    // Handle passcode submission
+    async function handlePasscodeSubmit() {
+      const passcode = getPasscodeFromInputs();
+      
+      if (passcode.length !== 4) {
+        document.getElementById('passcodeError').textContent = 'Please enter all 4 digits';
+        return;
+      }
+      
+      if (isSettingPasscode) {
+        // Creating new board with passcode
+        await createBoardWithPasscode(passcode);
+      } else {
+        // Unlocking existing board
+        await unlockBoard(passcode);
+      }
+    }
+    
+    // Create board with encryption
+    async function createBoardWithPasscode(passcode) {
+      setSyncStatus('syncing', 'Creating encrypted board...');
+      
+      try {
+        // Generate salt and derive key
+        const salt = crypto.getRandomValues(new Uint8Array(16));
+        encryptionKey = await deriveKey(passcode, salt);
+        
+        // Encrypt verifier to validate passcode later
+        const verifierEncrypted = await encryptData(VERIFIER_STRING, encryptionKey);
+        
+        // Create initial encrypted data
+        const boardData = { tasks: [], taskCounter: 0, createdAt: new Date().toISOString() };
+        const dataEncrypted = await encryptData(boardData, encryptionKey);
+        
+        // Payload structure
+        const payload = {
+          encrypted: true,
+          salt: ab2base64(salt),
+          verifier: verifierEncrypted,
+          data: dataEncrypted
+        };
+        
+        const response = await fetch(API_BASE, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        
+        if (response.ok) {
+          boardId = response.headers.get('X-Jsonblob') || response.headers.get('Location')?.split('/').pop();
+          if (!boardId) {
+            const loc = response.headers.get('location');
+            boardId = loc ? loc.split('/').pop() : null;
+          }
+          if (!boardId && response.url) {
+            boardId = response.url.split('/').pop();
+          }
+          
+          localStorage.setItem(STORAGE_KEY, boardId);
+          tasks = [];
+          taskCounter = 0;
+          passcodeModal.classList.remove('active');
+          setupModal.classList.remove('active');
+          renderBoard();
+          setSyncStatus('synced', '🔒 Encrypted ✓');
+          
+          const newUrl = window.location.pathname + '?board=' + boardId;
+          window.history.replaceState({}, '', newUrl);
+        } else {
+          throw new Error('Failed to create board');
+        }
+      } catch (e) {
+        console.error(e);
+        setSyncStatus('error', 'Failed to create board');
+        document.getElementById('passcodeError').textContent = 'Error creating board';
+      }
+    }
+    
+    // Unlock existing board
+    async function unlockBoard(passcode) {
+      setSyncStatus('syncing', 'Decrypting...');
+      
+      try {
+        const response = await fetch(`${API_BASE}/${boardId}`);
+        
+        if (!response.ok) {
+          if (response.status === 404) {
+            setSyncStatus('error', 'Board not found');
+            localStorage.removeItem(STORAGE_KEY);
+            boardId = null;
+            passcodeModal.classList.remove('active');
+            setupModal.classList.add('active');
+          }
+          return;
+        }
+        
+        const payload = await response.json();
+        
+        // Check if board is encrypted
+        if (!payload.encrypted) {
+          // Legacy unencrypted board - load directly
+          tasks = payload.tasks || [];
+          taskCounter = payload.taskCounter || 0;
+          passcodeModal.classList.remove('active');
+          renderBoard();
+          setSyncStatus('synced', 'Synced ✓');
+          return;
+        }
+        
+        // Derive key from passcode
+        const salt = base642ab(payload.salt);
+        encryptionKey = await deriveKey(passcode, salt);
+        
+        // Try to decrypt verifier
+        try {
+          const verifier = await decryptData(payload.verifier, encryptionKey);
+          
+          if (verifier !== VERIFIER_STRING) {
+            throw new Error('Invalid passcode');
+          }
+        } catch (e) {
+          document.getElementById('passcodeError').textContent = 'Incorrect passcode';
+          clearPasscodeInputs();
+          document.querySelector('.passcode-digit').focus();
+          setSyncStatus('error', 'Wrong passcode');
+          return;
+        }
+        
+        // Decrypt actual data
+        const data = await decryptData(payload.data, encryptionKey);
+        tasks = data.tasks || [];
+        taskCounter = data.taskCounter || 0;
+        
+        passcodeModal.classList.remove('active');
+        renderBoard();
+        setSyncStatus('synced', '🔒 Encrypted ✓');
+        
+        const newUrl = window.location.pathname + '?board=' + boardId;
+        window.history.replaceState({}, '', newUrl);
+        
+      } catch (e) {
+        console.error(e);
+        document.getElementById('passcodeError').textContent = 'Failed to unlock board';
+        setSyncStatus('error', 'Failed to load');
+      }
     }
 
     // Sync status updates
@@ -801,56 +1170,38 @@
 
     // Cloud operations
     async function createBoard() {
-      setSyncStatus('syncing', 'Creating board...');
-      try {
-        const response = await fetch(API_BASE, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ tasks: [], taskCounter: 0, createdAt: new Date().toISOString() })
-        });
-        
-        if (response.ok) {
-          boardId = response.headers.get('X-Jsonblob') || response.headers.get('Location')?.split('/').pop();
-          if (!boardId) {
-            const loc = response.headers.get('location');
-            boardId = loc ? loc.split('/').pop() : null;
-          }
-          // Fallback: try to get from response URL
-          if (!boardId && response.url) {
-            boardId = response.url.split('/').pop();
-          }
-          
-          localStorage.setItem(STORAGE_KEY, boardId);
-          tasks = [];
-          taskCounter = 0;
-          setupModal.classList.remove('active');
-          renderBoard();
-          setSyncStatus('synced', 'Board created ✓');
-          
-          // Update URL
-          const newUrl = window.location.pathname + '?board=' + boardId;
-          window.history.replaceState({}, '', newUrl);
-        } else {
-          throw new Error('Failed to create board');
-        }
-      } catch (e) {
-        console.error(e);
-        setSyncStatus('error', 'Failed to create board');
-      }
+      // Show passcode modal to set encryption
+      showPasscodeModal(true);
     }
 
     async function loadFromCloud() {
+      if (!encryptionKey) {
+        // Need to unlock first
+        showPasscodeModal(false);
+        return;
+      }
+      
       setSyncStatus('syncing', 'Loading...');
       try {
         const response = await fetch(`${API_BASE}/${boardId}`);
         if (response.ok) {
-          const data = await response.json();
-          tasks = data.tasks || [];
-          taskCounter = data.taskCounter || 0;
-          renderBoard();
-          setSyncStatus('synced', 'Synced ✓');
+          const payload = await response.json();
           
-          // Update URL
+          if (payload.encrypted) {
+            // Decrypt data
+            const data = await decryptData(payload.data, encryptionKey);
+            tasks = data.tasks || [];
+            taskCounter = data.taskCounter || 0;
+            setSyncStatus('synced', '🔒 Encrypted ✓');
+          } else {
+            // Legacy unencrypted
+            tasks = payload.tasks || [];
+            taskCounter = payload.taskCounter || 0;
+            setSyncStatus('synced', 'Synced ✓');
+          }
+          
+          renderBoard();
+          
           const newUrl = window.location.pathname + '?board=' + boardId;
           window.history.replaceState({}, '', newUrl);
         } else if (response.status === 404) {
@@ -868,21 +1219,39 @@
     }
 
     async function saveToCloud() {
-      if (!boardId || isSyncing) return;
+      if (!boardId || isSyncing || !encryptionKey) return;
       isSyncing = true;
-      setSyncStatus('syncing', 'Saving...');
+      setSyncStatus('syncing', 'Encrypting & saving...');
+      
       try {
+        // Get current salt from stored board
+        const getResponse = await fetch(`${API_BASE}/${boardId}`);
+        const currentPayload = await getResponse.json();
+        
+        // Encrypt new data
+        const boardData = { 
+          tasks, 
+          taskCounter,
+          updatedAt: new Date().toISOString() 
+        };
+        const dataEncrypted = await encryptData(boardData, encryptionKey);
+        
+        // Keep same salt and verifier, update data
+        const payload = {
+          encrypted: true,
+          salt: currentPayload.salt,
+          verifier: currentPayload.verifier,
+          data: dataEncrypted
+        };
+        
         const response = await fetch(`${API_BASE}/${boardId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 
-            tasks, 
-            taskCounter,
-            updatedAt: new Date().toISOString() 
-          })
+          body: JSON.stringify(payload)
         });
+        
         if (response.ok) {
-          setSyncStatus('synced', 'Saved ✓');
+          setSyncStatus('synced', '🔒 Saved ✓');
         } else {
           throw new Error('Failed to save');
         }
@@ -897,7 +1266,8 @@
       boardId = id.trim();
       localStorage.setItem(STORAGE_KEY, boardId);
       setupModal.classList.remove('active');
-      await loadFromCloud();
+      // Show passcode modal to decrypt
+      showPasscodeModal(false);
     }
 
     // Generate task ID
@@ -1226,6 +1596,9 @@
           if (id) joinBoard(id);
         }
       });
+      
+      // Passcode modal
+      document.getElementById('submitPasscodeBtn').addEventListener('click', handlePasscodeSubmit);
       
       // Keyboard shortcuts
       document.addEventListener('keydown', (e) => {
