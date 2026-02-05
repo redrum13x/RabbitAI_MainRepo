@@ -1,5 +1,33 @@
 {
-  "tasks": [],
-  "taskCounter": 0,
-  "lastUpdated": "2026-02-05T16:44:00Z"
+  "tasks": [
+    {
+      "id": "RB-1",
+      "title": "Create Rabbit_Coder agent",
+      "description": "Set up a dedicated coding sub-agent that Rabbit can spawn for parallel coding work. Includes: agent config, spawn capability, and dashboard integration with active status indicator.",
+      "priority": "high",
+      "column": "inprogress",
+      "labels": ["infra", "ai"],
+      "assignee": "Rabbit",
+      "activelyWorking": true,
+      "createdAt": "2026-02-05T16:50:00Z"
+    },
+    {
+      "id": "RB-2",
+      "title": "Update board UI with agent avatars",
+      "description": "Add assignee icons/avatars to cards. Include visual indicator (glow/pulse) when agent is actively working on a task. Assignees: Rabbit 🐇, Rabbit_Coder 💻",
+      "priority": "high",
+      "column": "todo",
+      "labels": ["feature"],
+      "assignee": "Rabbit",
+      "activelyWorking": false,
+      "createdAt": "2026-02-05T16:50:00Z"
+    }
+  ],
+  "taskCounter": 2,
+  "agents": {
+    "Rabbit": { "icon": "🐇", "role": "Orchestrator" },
+    "Rabbit_Coder": { "icon": "💻", "role": "Coder" },
+    "Grant": { "icon": "👤", "role": "PM" }
+  },
+  "lastUpdated": "2026-02-05T16:50:00Z"
 }

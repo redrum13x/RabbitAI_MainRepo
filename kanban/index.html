@@ -162,6 +162,29 @@
     .card-description { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .card-meta { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
     .card-labels { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+    
+    .card-assignee {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.8rem;
+    }
+    .assignee-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    .assignee-icon.active {
+      animation: pulse 1.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 6px var(--accent));
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    .card.has-active {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
+    }
 
     .label {
       font-size: 0.65rem;
@@ -483,6 +506,7 @@
     let currentSalt = null;
     let passcodeMode = 'create'; // 'create' or 'unlock'
     let isReadOnly = false; // true when loaded from GitHub
+    let agents = {}; // agent definitions with icons
 
     // ===== CRYPTO HELPERS =====
     const encode = s => new TextEncoder().encode(s);
@@ -571,6 +595,7 @@
         const data = await res.json();
         tasks = data.tasks || [];
         taskCounter = data.taskCounter || 0;
+        agents = data.agents || {};
         return true;
       } catch (e) {
         console.log('GitHub load failed, using local storage');
@@ -750,16 +775,22 @@
           return true;
         });
 
-        body.innerHTML = filtered.map(t => `
-          <div class="card priority-${t.priority}" data-id="${t.id}" draggable="true">
-            <div class="card-id">${t.id}</div>
-            <div class="card-title">${esc(t.title)}</div>
-            ${t.description ? `<div class="card-description">${esc(t.description)}</div>` : ''}
-            <div class="card-meta">
-              <div class="card-labels">${(t.labels || []).map(l => `<span class="label label-${l}">${l}</span>`).join('')}</div>
+        body.innerHTML = filtered.map(t => {
+          const agent = agents[t.assignee] || {};
+          const icon = agent.icon || '👤';
+          const isActive = t.activelyWorking;
+          return `
+            <div class="card priority-${t.priority} ${isActive ? 'has-active' : ''}" data-id="${t.id}" draggable="true">
+              <div class="card-id">${t.id}</div>
+              <div class="card-title">${esc(t.title)}</div>
+              ${t.description ? `<div class="card-description">${esc(t.description)}</div>` : ''}
+              <div class="card-meta">
+                <div class="card-labels">${(t.labels || []).map(l => `<span class="label label-${l}">${l}</span>`).join('')}</div>
+                ${t.assignee ? `<div class="card-assignee"><span class="assignee-icon ${isActive ? 'active' : ''}">${icon}</span>${t.assignee}</div>` : ''}
+              </div>
             </div>
-          </div>
-        `).join('');
+          `;
+        }).join('');
 
         document.querySelector(`.count[data-col="${col}"]`).textContent = filtered.length;
 
