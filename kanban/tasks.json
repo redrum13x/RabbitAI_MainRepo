@@ -5,11 +5,13 @@
       "title": "Create Rabbit_Coder agent",
       "description": "Set up a dedicated coding sub-agent that Rabbit can spawn for parallel coding work. Includes: agent config, spawn capability, and dashboard integration with active status indicator.",
       "priority": "high",
-      "column": "inprogress",
+      "column": "done",
       "labels": ["infra", "ai"],
       "assignee": "Rabbit",
-      "activelyWorking": true,
-      "createdAt": "2026-02-05T16:50:00Z"
+      "activelyWorking": false,
+      "createdAt": "2026-02-05T16:50:00Z",
+      "completedAt": "2026-02-05T17:00:00Z",
+      "notes": "✅ Agent created via `openclaw agents add`. Spawn permission configured. Workspace set up with SOUL.md, AGENTS.md, USER.md, TOOLS.md."
     },
     {
       "id": "RB-2",
@@ -18,16 +20,16 @@
       "priority": "high",
       "column": "todo",
       "labels": ["feature"],
-      "assignee": "Rabbit",
+      "assignee": "Rabbit_Coder",
       "activelyWorking": false,
       "createdAt": "2026-02-05T16:50:00Z"
     }
   ],
   "taskCounter": 2,
   "agents": {
-    "Rabbit": { "icon": "🐇", "role": "Orchestrator" },
-    "Rabbit_Coder": { "icon": "💻", "role": "Coder" },
-    "Grant": { "icon": "👤", "role": "PM" }
+    "Rabbit": { "icon": "🐇", "role": "Orchestrator", "status": "active" },
+    "Rabbit_Coder": { "icon": "💻", "role": "Coder", "status": "spawnable" },
+    "Grant": { "icon": "👤", "role": "PM", "status": "human" }
   },
-  "lastUpdated": "2026-02-05T16:50:00Z"
+  "lastUpdated": "2026-02-05T17:00:00Z"
 }
