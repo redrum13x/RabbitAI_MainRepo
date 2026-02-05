@@ -41,22 +41,26 @@
       "title": "AI Opportunities: Tech Architecture Diagrams",
       "description": "Create Mermaid.js diagrams showing technical architecture for all 15 AI opportunities.",
       "priority": "high",
-      "column": "inprogress",
+      "column": "done",
       "labels": ["research", "ai"],
       "assignee": "Rabbit_Coder",
-      "activelyWorking": true,
-      "createdAt": "2026-02-05T17:18:00Z"
+      "activelyWorking": false,
+      "createdAt": "2026-02-05T17:18:00Z",
+      "completedAt": "2026-02-05T17:28:00Z",
+      "notes": "✅ 15 Mermaid flowcharts showing components, data flow, AI layers, integrations"
     },
     {
       "id": "RB-5",
       "title": "AI Opportunities: Competitive Research",
       "description": "Research EHS AI competitive landscape - major players, features, market size.",
       "priority": "high",
-      "column": "inprogress",
+      "column": "done",
       "labels": ["research"],
-      "assignee": "Rabbit_Researcher",
-      "activelyWorking": true,
-      "createdAt": "2026-02-05T17:18:00Z"
+      "assignee": "Rabbit",
+      "activelyWorking": false,
+      "createdAt": "2026-02-05T17:18:00Z",
+      "completedAt": "2026-02-05T17:25:00Z",
+      "notes": "✅ Major players (Intelex, Enablon, VelocityEHS, SafetyCulture), CV/wearable vendors, market data"
     },
     {
       "id": "RB-6",
@@ -68,15 +72,16 @@
       "assignee": "Rabbit",
       "activelyWorking": false,
       "createdAt": "2026-02-05T17:18:00Z",
-      "completedAt": "2026-02-05T17:22:00Z"
+      "completedAt": "2026-02-05T17:22:00Z",
+      "notes": "✅ Full writeup with tiered priorities, dependencies, metrics"
     }
   ],
   "taskCounter": 6,
   "agents": {
     "Rabbit": { "icon": "🐇", "role": "Orchestrator", "status": "active" },
-    "Rabbit_Coder": { "icon": "💻", "role": "Coder", "status": "working" },
-    "Rabbit_Researcher": { "icon": "🔍", "role": "Researcher", "status": "working" },
+    "Rabbit_Coder": { "icon": "💻", "role": "Coder", "status": "idle" },
+    "Rabbit_Researcher": { "icon": "🔍", "role": "Researcher", "status": "idle" },
     "Grant": { "icon": "👤", "role": "PM", "status": "human" }
   },
-  "lastUpdated": "2026-02-05T17:22:00Z"
+  "lastUpdated": "2026-02-05T17:30:00Z"
 }
