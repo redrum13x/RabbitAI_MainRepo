@@ -22,11 +22,7 @@
       --shadow: rgba(0,0,0,0.3);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
@@ -58,16 +54,13 @@
       font-weight: 700;
     }
 
-    .logo span {
-      color: var(--accent);
-    }
+    .logo span { color: var(--accent); }
 
     .sync-status {
       font-size: 0.75rem;
       color: var(--text-secondary);
       margin-left: 1rem;
     }
-
     .sync-status.syncing { color: #ffd166; }
     .sync-status.synced { color: #06d6a0; }
     .sync-status.error { color: #e94560; }
@@ -79,27 +72,17 @@
       flex-wrap: wrap;
     }
 
-    .search-box {
+    .search-box, .filter-select {
       background: var(--bg-primary);
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 0.5rem 1rem;
       color: var(--text-primary);
-      width: 200px;
     }
-
-    .search-box:focus {
+    .search-box { width: 200px; }
+    .search-box:focus, .filter-select:focus {
       outline: none;
       border-color: var(--accent);
-    }
-
-    .filter-select {
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.5rem;
-      color: var(--text-primary);
-      cursor: pointer;
     }
 
     .btn {
@@ -109,33 +92,21 @@
       padding: 0.5rem 1rem;
       border-radius: 6px;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 500;
       transition: background 0.2s;
     }
-
-    .btn:hover {
-      background: var(--accent-hover);
-    }
-
-    .btn-secondary {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      background: var(--bg-card-hover);
-    }
-
-    .btn-small {
-      padding: 0.3rem 0.6rem;
-      font-size: 0.85rem;
-    }
+    .btn:hover { background: var(--accent-hover); }
+    .btn-secondary { background: var(--bg-card); }
+    .btn-secondary:hover { background: var(--bg-card-hover); }
+    .btn-small { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
+    .btn-danger { background: #dc2626; }
+    .btn-danger:hover { background: #ef4444; }
 
     .board {
       display: flex;
       gap: 1rem;
       padding: 1.5rem;
-      min-height: calc(100vh - 80px);
+      min-height: calc(100vh - 70px);
       overflow-x: auto;
     }
 
@@ -146,7 +117,6 @@
       max-width: 300px;
       display: flex;
       flex-direction: column;
-      max-height: calc(100vh - 110px);
     }
 
     .column-header {
@@ -158,151 +128,90 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .column-header .count {
+    .count {
       background: var(--bg-card);
       padding: 0.2rem 0.6rem;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 0.8rem;
     }
 
     .column-body {
-      padding: 0.5rem;
       flex: 1;
+      padding: 0.5rem;
       overflow-y: auto;
       min-height: 200px;
     }
 
-    .column-body.drag-over {
-      background: rgba(233, 69, 96, 0.1);
-    }
+    .column-body.drag-over { background: rgba(233, 69, 96, 0.1); }
 
     .card {
       background: var(--bg-card);
       border-radius: 6px;
-      padding: 1rem;
+      padding: 0.75rem;
       margin-bottom: 0.5rem;
       cursor: grab;
       transition: all 0.2s;
       border-left: 3px solid transparent;
     }
-
-    .card:hover {
-      background: var(--bg-card-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px var(--shadow);
-    }
-
-    .card.dragging {
-      opacity: 0.5;
-      cursor: grabbing;
-    }
-
+    .card:hover { background: var(--bg-card-hover); transform: translateY(-2px); }
+    .card.dragging { opacity: 0.5; }
     .card.priority-critical { border-left-color: var(--priority-critical); }
     .card.priority-high { border-left-color: var(--priority-high); }
     .card.priority-medium { border-left-color: var(--priority-medium); }
     .card.priority-low { border-left-color: var(--priority-low); }
 
-    .card-id {
-      font-size: 0.7rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.3rem;
-    }
-
-    .card-title {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .card-description {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.75rem;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .card-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .card-labels {
-      display: flex;
-      gap: 0.3rem;
-      flex-wrap: wrap;
-    }
+    .card-id { font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
+    .card-title { font-weight: 500; margin-bottom: 0.5rem; }
+    .card-description { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-meta { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    .card-labels { display: flex; gap: 0.25rem; flex-wrap: wrap; }
 
     .label {
-      font-size: 0.7rem;
-      padding: 0.2rem 0.5rem;
+      font-size: 0.65rem;
+      padding: 0.15rem 0.4rem;
       border-radius: 3px;
-      background: var(--bg-primary);
+      font-weight: 500;
     }
-
-    .label-platform { background: #6366f1; }
+    .label-platform { background: #3b82f6; }
     .label-feature { background: #8b5cf6; }
     .label-bug { background: #ef4444; }
-    .label-research { background: #14b8a6; }
-    .label-docs { background: #f59e0b; }
-    .label-ai { background: #ec4899; }
-    .label-infra { background: #64748b; }
+    .label-research { background: #06b6d4; }
+    .label-docs { background: #6b7280; }
+    .label-ai { background: #10b981; }
+    .label-infra { background: #f59e0b; }
 
-    .card-assignee {
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .assignee-avatar {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-    }
-
-    .assignee-grant { background: #3b82f6; }
-    .assignee-rabbit { background: var(--accent); }
-
-    .card-comments {
-      font-size: 0.75rem;
+    .add-card-btn {
+      width: calc(100% - 1rem);
+      margin: 0.5rem;
+      padding: 0.75rem;
+      background: transparent;
+      border: 2px dashed var(--border);
+      border-radius: 6px;
       color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
+      cursor: pointer;
+      transition: all 0.2s;
     }
+    .add-card-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* Modal Styles */
+    /* Modal */
     .modal-overlay {
-      display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.7);
-      z-index: 200;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .modal-overlay.active {
       display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s;
     }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
 
     .modal {
       background: var(--bg-secondary);
       border-radius: 12px;
-      width: 100%;
+      width: 90%;
       max-width: 600px;
       max-height: 90vh;
       overflow-y: auto;
@@ -316,231 +225,51 @@
       justify-content: space-between;
       align-items: center;
     }
-
-    .modal-header h2 {
-      font-size: 1.2rem;
-    }
-
+    .modal-header h2 { font-size: 1.25rem; }
     .modal-close {
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 1.5rem;
-      cursor: pointer;
+      background: none; border: none; color: var(--text-secondary);
+      font-size: 1.5rem; cursor: pointer; padding: 0.5rem;
     }
+    .modal-close:hover { color: var(--text-primary); }
 
-    .modal-close:hover {
-      color: var(--text-primary);
-    }
+    .modal-body { padding: 1.5rem; }
 
-    .modal-body {
-      padding: 1.5rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem; }
+    .form-group input, .form-group textarea, .form-group select {
       width: 100%;
+      padding: 0.75rem;
       background: var(--bg-primary);
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 0.75rem;
       color: var(--text-primary);
-      font-family: inherit;
+      font-size: 1rem;
     }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--accent);
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--accent);
     }
+    .form-group textarea { min-height: 100px; resize: vertical; }
 
-    .form-group textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .label-checkboxes {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
+    .label-checkboxes { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .label-checkbox {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      cursor: pointer;
-    }
-
-    .label-checkbox input {
-      width: auto;
+      display: flex; align-items: center; gap: 0.25rem;
+      font-size: 0.85rem; cursor: pointer;
     }
 
     .modal-footer {
-      padding: 1.5rem;
+      padding: 1rem 1.5rem;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       gap: 1rem;
     }
+    .modal-footer .btn-group { display: flex; gap: 0.5rem; }
 
-    .modal-footer .btn-group {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .btn-danger {
-      background: #dc2626;
-    }
-
-    .btn-danger:hover {
-      background: #ef4444;
-    }
-
-    /* Comments section */
-    .comments-section {
-      margin-top: 1.5rem;
-      border-top: 1px solid var(--border);
-      padding-top: 1.5rem;
-    }
-
-    .comments-section h3 {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .comment {
-      background: var(--bg-primary);
-      border-radius: 6px;
-      padding: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .comment-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-      font-size: 0.8rem;
-    }
-
-    .comment-author {
-      font-weight: 600;
-    }
-
-    .comment-date {
-      color: var(--text-secondary);
-    }
-
-    .comment-body {
-      font-size: 0.9rem;
-      white-space: pre-wrap;
-    }
-
-    .add-comment {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-
-    .add-comment textarea {
-      flex: 1;
-      min-height: 60px;
-    }
-
-    .add-comment-controls {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    /* Add card button */
-    .add-card-btn {
-      width: calc(100% - 1rem);
-      margin: 0.5rem;
-      padding: 0.75rem;
-      background: transparent;
-      border: 2px dashed var(--border);
-      border-radius: 6px;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .add-card-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* Passcode modal */
-    .passcode-input {
-      display: flex;
-      gap: 0.5rem;
-      justify-content: center;
-      margin: 1.5rem 0;
-    }
-
-    .passcode-digit {
-      width: 50px;
-      height: 60px;
-      font-size: 1.5rem;
-      text-align: center;
-      background: var(--bg-primary);
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      color: var(--text-primary);
-      font-family: monospace;
-    }
-
-    .passcode-digit:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .passcode-error {
-      color: var(--priority-critical);
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-      min-height: 1.5rem;
-    }
-
-    .lock-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    /* Setup modal */
-    .setup-section {
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .setup-section h3 {
-      margin-bottom: 1rem;
-    }
-
-    .setup-section p {
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-    }
+    .setup-section { text-align: center; padding: 2rem; }
+    .setup-section h3 { margin-bottom: 1rem; }
+    .setup-section p { color: var(--text-secondary); margin-bottom: 1.5rem; }
 
     .board-id-display {
       background: var(--bg-primary);
@@ -552,27 +281,45 @@
       word-break: break-all;
     }
 
-    .board-id-input {
-      margin: 1rem 0;
+    /* Passcode */
+    .passcode-input {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin: 1.5rem 0;
     }
+    .passcode-digit {
+      width: 50px;
+      height: 60px;
+      font-size: 1.5rem;
+      text-align: center;
+      background: var(--bg-primary);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: monospace;
+    }
+    .passcode-digit:focus { outline: none; border-color: var(--accent); }
+    .passcode-error { color: var(--priority-critical); font-size: 0.9rem; margin-top: 0.5rem; min-height: 1.5rem; }
+    .lock-icon { font-size: 3rem; margin-bottom: 1rem; }
 
-    /* Responsive */
+    .comments-section { margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+    .comments-section h3 { font-size: 1rem; margin-bottom: 1rem; }
+    .comment { background: var(--bg-primary); border-radius: 6px; padding: 0.75rem; margin-bottom: 0.75rem; }
+    .comment-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.8rem; }
+    .comment-author { font-weight: 600; }
+    .comment-date { color: var(--text-secondary); }
+    .comment-body { font-size: 0.9rem; white-space: pre-wrap; }
+    .add-comment { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .add-comment textarea { flex: 1; min-height: 60px; }
+    .add-comment-controls { display: flex; flex-direction: column; gap: 0.5rem; }
+
     @media (max-width: 768px) {
-      header {
-        padding: 1rem;
-      }
-      .toolbar {
-        width: 100%;
-      }
-      .search-box {
-        width: 100%;
-      }
-      .column {
-        min-width: 280px;
-      }
-      .form-row {
-        grid-template-columns: 1fr;
-      }
+      header { padding: 1rem; }
+      .toolbar { width: 100%; }
+      .search-box { width: 100%; }
+      .column { min-width: 280px; }
+      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -584,11 +331,6 @@
     </div>
     <div class="toolbar">
       <input type="text" class="search-box" id="searchBox" placeholder="Search tasks...">
-      <select class="filter-select" id="filterAssignee">
-        <option value="">All Assignees</option>
-        <option value="Grant">Grant</option>
-        <option value="Rabbit">Rabbit</option>
-      </select>
       <select class="filter-select" id="filterPriority">
         <option value="">All Priorities</option>
         <option value="critical">Critical</option>
@@ -596,60 +338,35 @@
         <option value="medium">Medium</option>
         <option value="low">Low</option>
       </select>
-      <select class="filter-select" id="filterLabel">
-        <option value="">All Labels</option>
-        <option value="platform">Platform</option>
-        <option value="feature">Feature</option>
-        <option value="bug">Bug</option>
-        <option value="research">Research</option>
-        <option value="docs">Docs</option>
-        <option value="ai">AI</option>
-        <option value="infra">Infra</option>
-      </select>
       <button class="btn" id="newTaskBtn">+ New Task</button>
-      <button class="btn btn-secondary btn-small" id="refreshBtn" title="Refresh from cloud">🔄</button>
-      <button class="btn btn-secondary btn-small" id="shareBtn" title="Share board">🔗</button>
+      <button class="btn btn-secondary btn-small" id="refreshBtn" title="Refresh">🔄</button>
+      <button class="btn btn-secondary btn-small" id="shareBtn" title="Share">🔗</button>
     </div>
   </header>
 
   <main class="board" id="board">
-    <div class="column" data-column="backlog">
-      <div class="column-header">
-        <span>📋 Backlog</span>
-        <span class="count">0</span>
-      </div>
+    <div class="column">
+      <div class="column-header"><span>📋 Backlog</span><span class="count" data-col="backlog">0</span></div>
       <div class="column-body" data-column="backlog"></div>
       <button class="add-card-btn" data-column="backlog">+ Add task</button>
     </div>
-    <div class="column" data-column="todo">
-      <div class="column-header">
-        <span>📌 To Do</span>
-        <span class="count">0</span>
-      </div>
+    <div class="column">
+      <div class="column-header"><span>📌 To Do</span><span class="count" data-col="todo">0</span></div>
       <div class="column-body" data-column="todo"></div>
       <button class="add-card-btn" data-column="todo">+ Add task</button>
     </div>
-    <div class="column" data-column="inprogress">
-      <div class="column-header">
-        <span>🚧 In Progress</span>
-        <span class="count">0</span>
-      </div>
+    <div class="column">
+      <div class="column-header"><span>🚧 In Progress</span><span class="count" data-col="inprogress">0</span></div>
       <div class="column-body" data-column="inprogress"></div>
       <button class="add-card-btn" data-column="inprogress">+ Add task</button>
     </div>
-    <div class="column" data-column="review">
-      <div class="column-header">
-        <span>👀 Review</span>
-        <span class="count">0</span>
-      </div>
+    <div class="column">
+      <div class="column-header"><span>👀 Review</span><span class="count" data-col="review">0</span></div>
       <div class="column-body" data-column="review"></div>
       <button class="add-card-btn" data-column="review">+ Add task</button>
     </div>
-    <div class="column" data-column="done">
-      <div class="column-header">
-        <span>✅ Done</span>
-        <span class="count">0</span>
-      </div>
+    <div class="column">
+      <div class="column-header"><span>✅ Done</span><span class="count" data-col="done">0</span></div>
       <div class="column-body" data-column="done"></div>
       <button class="add-card-btn" data-column="done">+ Add task</button>
     </div>
@@ -665,16 +382,16 @@
       <div class="modal-body">
         <input type="hidden" id="taskId">
         <div class="form-group">
-          <label for="taskTitle">Title *</label>
+          <label>Title *</label>
           <input type="text" id="taskTitle" placeholder="Task title">
         </div>
         <div class="form-group">
-          <label for="taskDescription">Description</label>
+          <label>Description</label>
           <textarea id="taskDescription" placeholder="Describe the task..."></textarea>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="taskPriority">Priority</label>
+            <label>Priority</label>
             <select id="taskPriority">
               <option value="low">Low</option>
               <option value="medium" selected>Medium</option>
@@ -683,11 +400,13 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="taskAssignee">Assignee</label>
-            <select id="taskAssignee">
-              <option value="">Unassigned</option>
-              <option value="Grant">Grant</option>
-              <option value="Rabbit">Rabbit</option>
+            <label>Status</label>
+            <select id="taskColumn">
+              <option value="backlog">Backlog</option>
+              <option value="todo">To Do</option>
+              <option value="inprogress">In Progress</option>
+              <option value="review">Review</option>
+              <option value="done">Done</option>
             </select>
           </div>
         </div>
@@ -703,31 +422,6 @@
             <label class="label-checkbox"><input type="checkbox" name="labels" value="infra"> Infra</label>
           </div>
         </div>
-        <div class="form-group">
-          <label for="taskColumn">Status</label>
-          <select id="taskColumn">
-            <option value="backlog">Backlog</option>
-            <option value="todo">To Do</option>
-            <option value="inprogress">In Progress</option>
-            <option value="review">Review</option>
-            <option value="done">Done</option>
-          </select>
-        </div>
-        
-        <div class="comments-section" id="commentsSection" style="display: none;">
-          <h3>💬 Comments</h3>
-          <div id="commentsList"></div>
-          <div class="add-comment">
-            <textarea id="newComment" placeholder="Add a comment..."></textarea>
-            <div class="add-comment-controls">
-              <select id="commentAuthor">
-                <option value="Grant">Grant</option>
-                <option value="Rabbit">Rabbit</option>
-              </select>
-              <button class="btn btn-small" id="addCommentBtn">Add</button>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-danger" id="deleteTaskBtn" style="display: none;">Delete</button>
@@ -739,8 +433,8 @@
     </div>
   </div>
 
-  <!-- Setup Modal -->
-  <div class="modal-overlay" id="setupModal">
+  <!-- Welcome Modal -->
+  <div class="modal-overlay" id="welcomeModal">
     <div class="modal" style="max-width: 500px;">
       <div class="modal-header">
         <h2>🐇 Welcome to Rabbit Board</h2>
@@ -748,39 +442,15 @@
       <div class="modal-body">
         <div class="setup-section">
           <h3>Create New Board</h3>
-          <p>Start a fresh board. You'll get a shareable ID.</p>
+          <p>Start a fresh encrypted board with a 4-digit passcode.</p>
           <button class="btn" id="createBoardBtn">Create New Board</button>
         </div>
         <hr style="border-color: var(--border); margin: 2rem 0;">
         <div class="setup-section">
           <h3>Join Existing Board</h3>
           <p>Enter a board ID to access an existing board.</p>
-          <div class="board-id-input">
-            <input type="text" id="joinBoardId" placeholder="Enter board ID..." style="width: 100%;">
-          </div>
+          <input type="text" id="joinBoardId" placeholder="Enter board ID..." style="width: 100%; margin-bottom: 1rem;">
           <button class="btn btn-secondary" id="joinBoardBtn">Join Board</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Share Modal -->
-  <div class="modal-overlay" id="shareModal">
-    <div class="modal" style="max-width: 500px;">
-      <div class="modal-header">
-        <h2>🔗 Share Board</h2>
-        <button class="modal-close" id="closeShareModal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="setup-section">
-          <p>Share this ID to access the board from any device:</p>
-          <div class="board-id-display" id="boardIdDisplay"></div>
-          <button class="btn" id="copyBoardId">📋 Copy ID</button>
-          <p style="margin-top: 1.5rem; font-size: 0.85rem;">
-            Or bookmark this URL to access directly:
-          </p>
-          <div class="board-id-display" id="boardUrlDisplay" style="font-size: 0.9rem;"></div>
-          <button class="btn btn-secondary" id="copyBoardUrl">📋 Copy URL</button>
         </div>
       </div>
     </div>
@@ -795,866 +465,504 @@
       <div class="modal-body">
         <div class="setup-section">
           <div class="lock-icon">🔐</div>
-          <p id="passcodePrompt">Enter your 4-digit passcode to unlock the board.</p>
+          <p id="passcodePrompt">Enter your 4-digit passcode.</p>
           <div class="passcode-input">
-            <input type="password" class="passcode-digit" maxlength="1" data-index="0" inputmode="numeric" pattern="[0-9]">
-            <input type="password" class="passcode-digit" maxlength="1" data-index="1" inputmode="numeric" pattern="[0-9]">
-            <input type="password" class="passcode-digit" maxlength="1" data-index="2" inputmode="numeric" pattern="[0-9]">
-            <input type="password" class="passcode-digit" maxlength="1" data-index="3" inputmode="numeric" pattern="[0-9]">
+            <input type="password" class="passcode-digit" maxlength="1" inputmode="numeric">
+            <input type="password" class="passcode-digit" maxlength="1" inputmode="numeric">
+            <input type="password" class="passcode-digit" maxlength="1" inputmode="numeric">
+            <input type="password" class="passcode-digit" maxlength="1" inputmode="numeric">
           </div>
           <div class="passcode-error" id="passcodeError"></div>
-          <button class="btn" id="submitPasscodeBtn" style="margin-top: 1rem;">Unlock</button>
-          <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">
-            Wrong board? <a href="#" id="resetBoardLink" style="color: var(--accent);">Start fresh</a>
+          <button class="btn" id="submitPasscodeBtn">Submit</button>
+          <p id="startFreshLink" style="margin-top: 1.5rem; font-size: 0.85rem; display: none;">
+            <a href="#" style="color: var(--accent);">Start fresh with a new board</a>
           </p>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Share Modal -->
+  <div class="modal-overlay" id="shareModal">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h2>🔗 Share Board</h2>
+        <button class="modal-close" id="closeShareModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="setup-section">
+          <p>Board ID:</p>
+          <div class="board-id-display" id="boardIdDisplay"></div>
+          <button class="btn" id="copyBoardId">📋 Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Configuration
-    const API_BASE = 'https://jsonblob.com/api/jsonBlob';
+    // ===== CONFIG =====
+    const API = 'https://jsonblob.com/api/jsonBlob';
     const STORAGE_KEY = 'rabbit-board-id';
-    const PASSCODE_KEY = 'rabbit-board-passcode';
-    const VERIFIER_STRING = 'RABBIT_BOARD_VERIFIED';
-    
-    // State
+    const VERIFY_STR = 'RABBIT_OK';
+
+    // ===== STATE =====
     let boardId = null;
     let tasks = [];
     let taskCounter = 0;
-    let isSyncing = false;
-    let encryptionKey = null;
-    let isSettingPasscode = false;
+    let cryptoKey = null;
+    let currentSalt = null;
+    let passcodeMode = 'unlock'; // 'unlock' or 'create'
 
-    // Elements
-    const board = document.getElementById('board');
-    const taskModal = document.getElementById('taskModal');
-    const setupModal = document.getElementById('setupModal');
-    const shareModal = document.getElementById('shareModal');
-    const passcodeModal = document.getElementById('passcodeModal');
-    const syncStatus = document.getElementById('syncStatus');
-    const searchBox = document.getElementById('searchBox');
-    const filterAssignee = document.getElementById('filterAssignee');
-    const filterPriority = document.getElementById('filterPriority');
-    const filterLabel = document.getElementById('filterLabel');
+    // ===== CRYPTO HELPERS =====
+    const encode = s => new TextEncoder().encode(s);
+    const decode = b => new TextDecoder().decode(b);
+    const toB64 = b => btoa(String.fromCharCode(...new Uint8Array(b)));
+    const fromB64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 
-    // ==================== ENCRYPTION HELPERS ====================
-    
-    // Convert string to ArrayBuffer
-    function str2ab(str) {
-      const encoder = new TextEncoder();
-      return encoder.encode(str);
-    }
-    
-    // Convert ArrayBuffer to string
-    function ab2str(buf) {
-      const decoder = new TextDecoder();
-      return decoder.decode(buf);
-    }
-    
-    // Convert ArrayBuffer to base64
-    function ab2base64(buf) {
-      return btoa(String.fromCharCode(...new Uint8Array(buf)));
-    }
-    
-    // Convert base64 to ArrayBuffer
-    function base642ab(base64) {
-      const binary = atob(base64);
-      const buf = new Uint8Array(binary.length);
-      for (let i = 0; i < binary.length; i++) {
-        buf[i] = binary.charCodeAt(i);
-      }
-      return buf;
-    }
-    
-    // Derive encryption key from passcode using PBKDF2
     async function deriveKey(passcode, salt) {
-      const keyMaterial = await crypto.subtle.importKey(
-        'raw',
-        str2ab(passcode),
-        'PBKDF2',
-        false,
-        ['deriveBits', 'deriveKey']
-      );
-      
+      const keyMaterial = await crypto.subtle.importKey('raw', encode(passcode), 'PBKDF2', false, ['deriveKey']);
       return crypto.subtle.deriveKey(
-        {
-          name: 'PBKDF2',
-          salt: salt,
-          iterations: 100000,
-          hash: 'SHA-256'
-        },
+        { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
         keyMaterial,
         { name: 'AES-GCM', length: 256 },
         false,
         ['encrypt', 'decrypt']
       );
     }
-    
-    // Encrypt data
-    async function encryptData(data, key) {
+
+    async function encrypt(data, key) {
       const iv = crypto.getRandomValues(new Uint8Array(12));
-      const encoded = str2ab(JSON.stringify(data));
-      
-      const ciphertext = await crypto.subtle.encrypt(
-        { name: 'AES-GCM', iv: iv },
-        key,
-        encoded
-      );
-      
-      return {
-        iv: ab2base64(iv),
-        ciphertext: ab2base64(ciphertext)
-      };
-    }
-    
-    // Decrypt data
-    async function decryptData(encrypted, key) {
-      const iv = base642ab(encrypted.iv);
-      const ciphertext = base642ab(encrypted.ciphertext);
-      
-      const decrypted = await crypto.subtle.decrypt(
-        { name: 'AES-GCM', iv: iv },
-        key,
-        ciphertext
-      );
-      
-      return JSON.parse(ab2str(decrypted));
-    }
-    
-    // Get passcode from input fields
-    function getPasscodeFromInputs() {
-      const digits = document.querySelectorAll('.passcode-digit');
-      return Array.from(digits).map(d => d.value).join('');
-    }
-    
-    // Clear passcode inputs
-    function clearPasscodeInputs() {
-      document.querySelectorAll('.passcode-digit').forEach(d => d.value = '');
-      document.getElementById('passcodeError').textContent = '';
-    }
-    
-    // Setup passcode input behavior
-    function setupPasscodeInputs() {
-      const digits = document.querySelectorAll('.passcode-digit');
-      
-      digits.forEach((digit, index) => {
-        digit.addEventListener('input', (e) => {
-          // Only allow numbers
-          e.target.value = e.target.value.replace(/[^0-9]/g, '');
-          
-          if (e.target.value && index < 3) {
-            digits[index + 1].focus();
-          }
-          
-          // Auto-submit when all 4 digits entered
-          if (getPasscodeFromInputs().length === 4) {
-            document.getElementById('submitPasscodeBtn').click();
-          }
-        });
-        
-        digit.addEventListener('keydown', (e) => {
-          if (e.key === 'Backspace' && !e.target.value && index > 0) {
-            digits[index - 1].focus();
-          }
-        });
-        
-        digit.addEventListener('paste', (e) => {
-          e.preventDefault();
-          const paste = (e.clipboardData || window.clipboardData).getData('text');
-          const numbers = paste.replace(/[^0-9]/g, '').slice(0, 4);
-          
-          numbers.split('').forEach((num, i) => {
-            if (digits[i]) digits[i].value = num;
-          });
-          
-          if (numbers.length === 4) {
-            document.getElementById('submitPasscodeBtn').click();
-          }
-        });
-      });
+      const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, encode(JSON.stringify(data)));
+      return { iv: toB64(iv), ct: toB64(ct) };
     }
 
-    // Initialize
+    async function decrypt(enc, key) {
+      const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: fromB64(enc.iv) }, key, fromB64(enc.ct));
+      return JSON.parse(decode(pt));
+    }
+
+    // ===== UI HELPERS =====
+    function $(id) { return document.getElementById(id); }
+    function show(id) { $(id).classList.add('active'); }
+    function hide(id) { $(id).classList.remove('active'); }
+    function status(type, msg) {
+      $('syncStatus').className = 'sync-status ' + type;
+      $('syncStatus').textContent = msg;
+    }
+
+    function getPasscode() {
+      return Array.from(document.querySelectorAll('.passcode-digit')).map(d => d.value).join('');
+    }
+
+    function clearPasscode() {
+      document.querySelectorAll('.passcode-digit').forEach(d => d.value = '');
+      $('passcodeError').textContent = '';
+    }
+
+    // ===== INIT =====
     async function init() {
       setupPasscodeInputs();
-      
-      // Check URL for board ID
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlBoardId = urlParams.get('board');
-      
-      if (urlBoardId) {
-        boardId = urlBoardId;
-        localStorage.setItem(STORAGE_KEY, boardId);
-      } else {
-        boardId = localStorage.getItem(STORAGE_KEY);
-      }
+      setupEventListeners();
+
+      // Check URL or localStorage for board ID
+      const params = new URLSearchParams(location.search);
+      boardId = params.get('board') || localStorage.getItem(STORAGE_KEY);
 
       if (boardId) {
-        // Check if board exists and needs passcode
-        await checkBoardAndPrompt();
+        localStorage.setItem(STORAGE_KEY, boardId);
+        await checkBoard();
       } else {
-        setupModal.classList.add('active');
+        show('welcomeModal');
       }
-
-      setupEventListeners();
     }
-    
-    // Check board status and show appropriate modal
-    async function checkBoardAndPrompt() {
-      setSyncStatus('syncing', 'Checking board...');
-      
+
+    // Check if board exists and determine if encrypted
+    async function checkBoard() {
+      status('syncing', 'Loading...');
       try {
-        const response = await fetch(`${API_BASE}/${boardId}`);
-        
-        if (!response.ok) {
-          // Board doesn't exist
-          setSyncStatus('error', 'Board not found');
+        const res = await fetch(`${API}/${boardId}`);
+        if (!res.ok) {
+          status('error', 'Board not found');
           localStorage.removeItem(STORAGE_KEY);
           boardId = null;
-          setupModal.classList.add('active');
+          show('welcomeModal');
           return;
         }
-        
-        const payload = await response.json();
-        
-        if (payload.encrypted) {
-          // Encrypted board - need passcode
-          showPasscodeModal(false);
+
+        const data = await res.json();
+
+        if (data.encrypted) {
+          // Need passcode to decrypt
+          passcodeMode = 'unlock';
+          $('passcodeTitle').textContent = '🔒 Enter Passcode';
+          $('passcodePrompt').textContent = 'Enter your 4-digit passcode to unlock.';
+          $('submitPasscodeBtn').textContent = 'Unlock';
+          $('startFreshLink').style.display = 'block';
+          currentSalt = fromB64(data.salt);
+          show('passcodeModal');
         } else {
-          // Legacy unencrypted board - load directly
-          tasks = payload.tasks || [];
-          taskCounter = payload.taskCounter || 0;
+          // Legacy unencrypted - load directly
+          tasks = data.tasks || [];
+          taskCounter = data.taskCounter || 0;
           renderBoard();
-          setSyncStatus('synced', 'Synced ✓ (unencrypted)');
-          
-          const newUrl = window.location.pathname + '?board=' + boardId;
-          window.history.replaceState({}, '', newUrl);
+          status('synced', 'Loaded (unencrypted)');
+          updateUrl();
         }
       } catch (e) {
         console.error(e);
-        setSyncStatus('error', 'Failed to check board');
-        // Show setup modal as fallback
-        setupModal.classList.add('active');
+        status('error', 'Failed to load');
+        show('welcomeModal');
       }
     }
-    
-    // Show passcode modal
-    function showPasscodeModal(isNew) {
-      isSettingPasscode = isNew;
-      clearPasscodeInputs();
-      
-      if (isNew) {
-        document.getElementById('passcodeTitle').textContent = '🔒 Set Passcode';
-        document.getElementById('passcodePrompt').textContent = 'Create a 4-digit passcode to protect your board.';
-      } else {
-        document.getElementById('passcodeTitle').textContent = '🔒 Enter Passcode';
-        document.getElementById('passcodePrompt').textContent = 'Enter your 4-digit passcode to unlock the board.';
-      }
-      
-      passcodeModal.classList.add('active');
-      document.querySelector('.passcode-digit').focus();
-    }
-    
-    // Handle passcode submission
-    async function handlePasscodeSubmit() {
-      const passcode = getPasscodeFromInputs();
-      
-      if (passcode.length !== 4) {
-        document.getElementById('passcodeError').textContent = 'Please enter all 4 digits';
+
+    // ===== PASSCODE HANDLING =====
+    async function handlePasscode() {
+      const code = getPasscode();
+      if (code.length !== 4) {
+        $('passcodeError').textContent = 'Enter all 4 digits';
         return;
       }
-      
-      if (isSettingPasscode) {
-        // Creating new board with passcode
-        await createBoardWithPasscode(passcode);
+
+      if (passcodeMode === 'create') {
+        await createEncryptedBoard(code);
       } else {
-        // Unlocking existing board
-        await unlockBoard(passcode);
+        await unlockBoard(code);
       }
     }
-    
-    // Create board with encryption
-    async function createBoardWithPasscode(passcode) {
-      setSyncStatus('syncing', 'Creating encrypted board...');
-      
+
+    async function createEncryptedBoard(code) {
+      status('syncing', 'Creating encrypted board...');
       try {
-        // Generate salt and derive key
         const salt = crypto.getRandomValues(new Uint8Array(16));
-        encryptionKey = await deriveKey(passcode, salt);
-        
-        // Encrypt verifier to validate passcode later
-        const verifierEncrypted = await encryptData(VERIFIER_STRING, encryptionKey);
-        
-        // Create initial encrypted data
-        const boardData = { tasks: [], taskCounter: 0, createdAt: new Date().toISOString() };
-        const dataEncrypted = await encryptData(boardData, encryptionKey);
-        
-        // Payload structure
+        cryptoKey = await deriveKey(code, salt);
+
+        const verifier = await encrypt(VERIFY_STR, cryptoKey);
+        const boardData = { tasks: [], taskCounter: 0 };
+        const encData = await encrypt(boardData, cryptoKey);
+
         const payload = {
           encrypted: true,
-          salt: ab2base64(salt),
-          verifier: verifierEncrypted,
-          data: dataEncrypted
+          salt: toB64(salt),
+          verifier,
+          data: encData
         };
-        
-        const response = await fetch(API_BASE, {
+
+        const res = await fetch(API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-        
-        if (response.ok) {
-          boardId = response.headers.get('X-Jsonblob') || response.headers.get('Location')?.split('/').pop();
-          if (!boardId) {
-            const loc = response.headers.get('location');
-            boardId = loc ? loc.split('/').pop() : null;
-          }
-          if (!boardId && response.url) {
-            boardId = response.url.split('/').pop();
-          }
-          
-          localStorage.setItem(STORAGE_KEY, boardId);
-          tasks = [];
-          taskCounter = 0;
-          passcodeModal.classList.remove('active');
-          setupModal.classList.remove('active');
-          renderBoard();
-          setSyncStatus('synced', '🔒 Encrypted ✓');
-          
-          const newUrl = window.location.pathname + '?board=' + boardId;
-          window.history.replaceState({}, '', newUrl);
-        } else {
-          throw new Error('Failed to create board');
-        }
+
+        if (!res.ok) throw new Error('Failed to create');
+
+        boardId = res.headers.get('X-Jsonblob') || res.headers.get('Location')?.split('/').pop();
+        if (!boardId && res.url) boardId = res.url.split('/').pop();
+
+        localStorage.setItem(STORAGE_KEY, boardId);
+        currentSalt = salt;
+        tasks = [];
+        taskCounter = 0;
+
+        hide('passcodeModal');
+        hide('welcomeModal');
+        renderBoard();
+        status('synced', '🔒 Created');
+        updateUrl();
       } catch (e) {
         console.error(e);
-        setSyncStatus('error', 'Failed to create board');
-        document.getElementById('passcodeError').textContent = 'Error creating board';
+        $('passcodeError').textContent = 'Failed to create board';
+        status('error', 'Failed');
       }
     }
-    
-    // Unlock existing board
-    async function unlockBoard(passcode) {
-      setSyncStatus('syncing', 'Decrypting...');
-      
+
+    async function unlockBoard(code) {
+      status('syncing', 'Unlocking...');
       try {
-        const response = await fetch(`${API_BASE}/${boardId}`);
-        
-        if (!response.ok) {
-          if (response.status === 404) {
-            setSyncStatus('error', 'Board not found');
-            localStorage.removeItem(STORAGE_KEY);
-            boardId = null;
-            passcodeModal.classList.remove('active');
-            setupModal.classList.add('active');
-          }
-          return;
-        }
-        
-        const payload = await response.json();
-        
-        // Check if board is encrypted
-        if (!payload.encrypted) {
-          // Legacy unencrypted board - load directly
-          tasks = payload.tasks || [];
-          taskCounter = payload.taskCounter || 0;
-          passcodeModal.classList.remove('active');
-          renderBoard();
-          setSyncStatus('synced', 'Synced ✓');
-          return;
-        }
-        
-        // Derive key from passcode
-        const salt = base642ab(payload.salt);
-        encryptionKey = await deriveKey(passcode, salt);
-        
-        // Try to decrypt verifier
+        const res = await fetch(`${API}/${boardId}`);
+        if (!res.ok) throw new Error('Board not found');
+
+        const payload = await res.json();
+        cryptoKey = await deriveKey(code, fromB64(payload.salt));
+
+        // Verify passcode
         try {
-          const verifier = await decryptData(payload.verifier, encryptionKey);
-          
-          if (verifier !== VERIFIER_STRING) {
-            throw new Error('Invalid passcode');
-          }
-        } catch (e) {
-          document.getElementById('passcodeError').textContent = 'Incorrect passcode';
-          clearPasscodeInputs();
+          const v = await decrypt(payload.verifier, cryptoKey);
+          if (v !== VERIFY_STR) throw new Error('Bad code');
+        } catch {
+          $('passcodeError').textContent = 'Wrong passcode';
+          clearPasscode();
           document.querySelector('.passcode-digit').focus();
-          setSyncStatus('error', 'Wrong passcode');
+          status('error', 'Wrong passcode');
           return;
         }
-        
-        // Decrypt actual data
-        const data = await decryptData(payload.data, encryptionKey);
+
+        // Decrypt data
+        const data = await decrypt(payload.data, cryptoKey);
         tasks = data.tasks || [];
         taskCounter = data.taskCounter || 0;
-        
-        passcodeModal.classList.remove('active');
+        currentSalt = fromB64(payload.salt);
+
+        hide('passcodeModal');
         renderBoard();
-        setSyncStatus('synced', '🔒 Encrypted ✓');
-        
-        const newUrl = window.location.pathname + '?board=' + boardId;
-        window.history.replaceState({}, '', newUrl);
-        
+        status('synced', '🔒 Unlocked');
+        updateUrl();
       } catch (e) {
         console.error(e);
-        document.getElementById('passcodeError').textContent = 'Failed to unlock board';
-        setSyncStatus('error', 'Failed to load');
+        $('passcodeError').textContent = 'Failed to unlock';
+        status('error', 'Failed');
       }
     }
 
-    // Sync status updates
-    function setSyncStatus(status, message) {
-      syncStatus.className = 'sync-status ' + status;
-      syncStatus.textContent = message;
-    }
+    // ===== SAVE =====
+    async function save() {
+      if (!boardId || !cryptoKey) return;
+      status('syncing', 'Saving...');
 
-    // Cloud operations
-    async function createBoard() {
-      // Show passcode modal to set encryption
-      showPasscodeModal(true);
-    }
-
-    async function loadFromCloud() {
-      if (!encryptionKey) {
-        // Need to unlock first
-        showPasscodeModal(false);
-        return;
-      }
-      
-      setSyncStatus('syncing', 'Loading...');
       try {
-        const response = await fetch(`${API_BASE}/${boardId}`);
-        if (response.ok) {
-          const payload = await response.json();
-          
-          if (payload.encrypted) {
-            // Decrypt data
-            const data = await decryptData(payload.data, encryptionKey);
-            tasks = data.tasks || [];
-            taskCounter = data.taskCounter || 0;
-            setSyncStatus('synced', '🔒 Encrypted ✓');
-          } else {
-            // Legacy unencrypted
-            tasks = payload.tasks || [];
-            taskCounter = payload.taskCounter || 0;
-            setSyncStatus('synced', 'Synced ✓');
-          }
-          
-          renderBoard();
-          
-          const newUrl = window.location.pathname + '?board=' + boardId;
-          window.history.replaceState({}, '', newUrl);
-        } else if (response.status === 404) {
-          setSyncStatus('error', 'Board not found');
-          localStorage.removeItem(STORAGE_KEY);
-          boardId = null;
-          setupModal.classList.add('active');
-        } else {
-          throw new Error('Failed to load');
-        }
-      } catch (e) {
-        console.error(e);
-        setSyncStatus('error', 'Failed to load');
-      }
-    }
+        const boardData = { tasks, taskCounter };
+        const encData = await encrypt(boardData, cryptoKey);
+        const verifier = await encrypt(VERIFY_STR, cryptoKey);
 
-    async function saveToCloud() {
-      if (!boardId || isSyncing || !encryptionKey) return;
-      isSyncing = true;
-      setSyncStatus('syncing', 'Encrypting & saving...');
-      
-      try {
-        // Get current salt from stored board
-        const getResponse = await fetch(`${API_BASE}/${boardId}`);
-        const currentPayload = await getResponse.json();
-        
-        // Encrypt new data
-        const boardData = { 
-          tasks, 
-          taskCounter,
-          updatedAt: new Date().toISOString() 
-        };
-        const dataEncrypted = await encryptData(boardData, encryptionKey);
-        
-        // Keep same salt and verifier, update data
         const payload = {
           encrypted: true,
-          salt: currentPayload.salt,
-          verifier: currentPayload.verifier,
-          data: dataEncrypted
+          salt: toB64(currentSalt),
+          verifier,
+          data: encData
         };
-        
-        const response = await fetch(`${API_BASE}/${boardId}`, {
+
+        const res = await fetch(`${API}/${boardId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-        
-        if (response.ok) {
-          setSyncStatus('synced', '🔒 Saved ✓');
-        } else {
-          throw new Error('Failed to save');
-        }
+
+        if (!res.ok) throw new Error('Save failed');
+        status('synced', '🔒 Saved');
       } catch (e) {
         console.error(e);
-        setSyncStatus('error', 'Failed to save');
+        status('error', 'Save failed');
       }
-      isSyncing = false;
     }
 
-    async function joinBoard(id) {
-      boardId = id.trim();
-      localStorage.setItem(STORAGE_KEY, boardId);
-      setupModal.classList.remove('active');
-      // Show passcode modal to decrypt
-      showPasscodeModal(false);
-    }
-
-    // Generate task ID
-    function generateTaskId() {
-      taskCounter++;
-      return 'RB-' + taskCounter;
-    }
-
-    // Render the board
+    // ===== RENDER =====
     function renderBoard() {
-      const columns = ['backlog', 'todo', 'inprogress', 'review', 'done'];
-      const searchTerm = searchBox.value.toLowerCase();
-      const assigneeFilter = filterAssignee.value;
-      const priorityFilter = filterPriority.value;
-      const labelFilter = filterLabel.value;
+      const cols = ['backlog', 'todo', 'inprogress', 'review', 'done'];
+      const search = $('searchBox').value.toLowerCase();
+      const priority = $('filterPriority').value;
 
-      columns.forEach(col => {
-        const columnBody = document.querySelector(`.column-body[data-column="${col}"]`);
-        const columnTasks = tasks.filter(t => {
+      cols.forEach(col => {
+        const body = document.querySelector(`.column-body[data-column="${col}"]`);
+        const filtered = tasks.filter(t => {
           if (t.column !== col) return false;
-          if (searchTerm && !t.title.toLowerCase().includes(searchTerm) && !(t.description || '').toLowerCase().includes(searchTerm)) return false;
-          if (assigneeFilter && t.assignee !== assigneeFilter) return false;
-          if (priorityFilter && t.priority !== priorityFilter) return false;
-          if (labelFilter && !t.labels.includes(labelFilter)) return false;
+          if (search && !t.title.toLowerCase().includes(search)) return false;
+          if (priority && t.priority !== priority) return false;
           return true;
         });
 
-        columnBody.innerHTML = columnTasks.map(task => renderCard(task)).join('');
-        
-        // Update count
-        const countEl = columnBody.parentElement.querySelector('.count');
-        countEl.textContent = columnTasks.length;
+        body.innerHTML = filtered.map(t => `
+          <div class="card priority-${t.priority}" data-id="${t.id}" draggable="true">
+            <div class="card-id">${t.id}</div>
+            <div class="card-title">${esc(t.title)}</div>
+            ${t.description ? `<div class="card-description">${esc(t.description)}</div>` : ''}
+            <div class="card-meta">
+              <div class="card-labels">${t.labels.map(l => `<span class="label label-${l}">${l}</span>`).join('')}</div>
+            </div>
+          </div>
+        `).join('');
 
-        // Setup drag events for cards
-        columnBody.querySelectorAll('.card').forEach(card => {
-          card.addEventListener('dragstart', handleDragStart);
-          card.addEventListener('dragend', handleDragEnd);
-          card.addEventListener('click', () => openTaskModal(card.dataset.id));
+        document.querySelector(`.count[data-col="${col}"]`).textContent = filtered.length;
+
+        body.querySelectorAll('.card').forEach(card => {
+          card.addEventListener('dragstart', e => { e.target.classList.add('dragging'); e.dataTransfer.setData('text', e.target.dataset.id); });
+          card.addEventListener('dragend', e => e.target.classList.remove('dragging'));
+          card.addEventListener('click', () => openTask(card.dataset.id));
         });
       });
     }
 
-    // Render a single card
-    function renderCard(task) {
-      const labelsHtml = task.labels.map(l => `<span class="label label-${l}">${l}</span>`).join('');
-      const assigneeHtml = task.assignee ? `
-        <span class="card-assignee">
-          <span class="assignee-avatar assignee-${task.assignee.toLowerCase()}">${task.assignee[0]}</span>
-          ${task.assignee}
-        </span>
-      ` : '';
-      const commentsCount = task.comments ? task.comments.length : 0;
-      const commentsHtml = commentsCount > 0 ? `<span class="card-comments">💬 ${commentsCount}</span>` : '';
-
-      return `
-        <div class="card priority-${task.priority}" data-id="${task.id}" draggable="true">
-          <div class="card-id">${task.id}</div>
-          <div class="card-title">${escapeHtml(task.title)}</div>
-          ${task.description ? `<div class="card-description">${escapeHtml(task.description)}</div>` : ''}
-          <div class="card-meta">
-            <div class="card-labels">${labelsHtml}</div>
-            <div style="display: flex; gap: 0.5rem; align-items: center;">
-              ${commentsHtml}
-              ${assigneeHtml}
-            </div>
-          </div>
-        </div>
-      `;
+    function esc(s) {
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
     }
 
-    // Escape HTML
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
+    function updateUrl() {
+      history.replaceState({}, '', location.pathname + '?board=' + boardId);
     }
 
-    // Drag and drop handlers
-    function handleDragStart(e) {
-      e.target.classList.add('dragging');
-      e.dataTransfer.setData('text/plain', e.target.dataset.id);
-    }
+    // ===== TASK MODAL =====
+    function openTask(id = null, col = 'backlog') {
+      const isNew = !id;
+      $('modalTitle').textContent = isNew ? 'New Task' : 'Edit Task';
+      $('deleteTaskBtn').style.display = isNew ? 'none' : 'block';
 
-    function handleDragEnd(e) {
-      e.target.classList.remove('dragging');
-    }
-
-    function handleDragOver(e) {
-      e.preventDefault();
-      e.currentTarget.classList.add('drag-over');
-    }
-
-    function handleDragLeave(e) {
-      e.currentTarget.classList.remove('drag-over');
-    }
-
-    function handleDrop(e) {
-      e.preventDefault();
-      e.currentTarget.classList.remove('drag-over');
-      const taskId = e.dataTransfer.getData('text/plain');
-      const newColumn = e.currentTarget.dataset.column;
-      
-      const task = tasks.find(t => t.id === taskId);
-      if (task && task.column !== newColumn) {
-        task.column = newColumn;
-        task.updatedAt = new Date().toISOString();
-        saveToCloud();
-        renderBoard();
-      }
-    }
-
-    // Modal handlers
-    function openTaskModal(taskId = null, defaultColumn = 'backlog') {
-      const modal = taskModal;
-      const isNew = !taskId;
-      
-      document.getElementById('modalTitle').textContent = isNew ? 'New Task' : 'Edit Task';
-      document.getElementById('deleteTaskBtn').style.display = isNew ? 'none' : 'block';
-      document.getElementById('commentsSection').style.display = isNew ? 'none' : 'block';
-      
       if (isNew) {
-        document.getElementById('taskId').value = '';
-        document.getElementById('taskTitle').value = '';
-        document.getElementById('taskDescription').value = '';
-        document.getElementById('taskPriority').value = 'medium';
-        document.getElementById('taskAssignee').value = '';
-        document.getElementById('taskColumn').value = defaultColumn;
+        $('taskId').value = '';
+        $('taskTitle').value = '';
+        $('taskDescription').value = '';
+        $('taskPriority').value = 'medium';
+        $('taskColumn').value = col;
         document.querySelectorAll('input[name="labels"]').forEach(cb => cb.checked = false);
-        document.getElementById('commentsList').innerHTML = '';
       } else {
-        const task = tasks.find(t => t.id === taskId);
-        if (task) {
-          document.getElementById('taskId').value = task.id;
-          document.getElementById('taskTitle').value = task.title;
-          document.getElementById('taskDescription').value = task.description || '';
-          document.getElementById('taskPriority').value = task.priority;
-          document.getElementById('taskAssignee').value = task.assignee || '';
-          document.getElementById('taskColumn').value = task.column;
-          document.querySelectorAll('input[name="labels"]').forEach(cb => {
-            cb.checked = task.labels.includes(cb.value);
-          });
-          renderComments(task);
+        const t = tasks.find(x => x.id === id);
+        if (t) {
+          $('taskId').value = t.id;
+          $('taskTitle').value = t.title;
+          $('taskDescription').value = t.description || '';
+          $('taskPriority').value = t.priority;
+          $('taskColumn').value = t.column;
+          document.querySelectorAll('input[name="labels"]').forEach(cb => cb.checked = t.labels.includes(cb.value));
         }
       }
-      
-      modal.classList.add('active');
-      document.getElementById('taskTitle').focus();
-    }
-
-    function closeTaskModal() {
-      taskModal.classList.remove('active');
-    }
-
-    function renderComments(task) {
-      const list = document.getElementById('commentsList');
-      if (!task.comments || task.comments.length === 0) {
-        list.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.9rem;">No comments yet.</p>';
-        return;
-      }
-      
-      list.innerHTML = task.comments.map(c => `
-        <div class="comment">
-          <div class="comment-header">
-            <span class="comment-author">${escapeHtml(c.author)}</span>
-            <span class="comment-date">${new Date(c.date).toLocaleString()}</span>
-          </div>
-          <div class="comment-body">${escapeHtml(c.text)}</div>
-        </div>
-      `).join('');
-    }
-
-    function addComment() {
-      const taskId = document.getElementById('taskId').value;
-      const text = document.getElementById('newComment').value.trim();
-      const author = document.getElementById('commentAuthor').value;
-      
-      if (!taskId || !text) return;
-      
-      const task = tasks.find(t => t.id === taskId);
-      if (task) {
-        if (!task.comments) task.comments = [];
-        task.comments.push({
-          author,
-          text,
-          date: new Date().toISOString()
-        });
-        task.updatedAt = new Date().toISOString();
-        saveToCloud();
-        renderComments(task);
-        document.getElementById('newComment').value = '';
-      }
+      show('taskModal');
+      $('taskTitle').focus();
     }
 
     function saveTask() {
-      const taskId = document.getElementById('taskId').value;
-      const title = document.getElementById('taskTitle').value.trim();
-      
-      if (!title) {
-        alert('Title is required');
-        return;
-      }
-      
-      const labels = [];
-      document.querySelectorAll('input[name="labels"]:checked').forEach(cb => {
-        labels.push(cb.value);
-      });
-      
-      const taskData = {
+      const title = $('taskTitle').value.trim();
+      if (!title) { alert('Title required'); return; }
+
+      const labels = Array.from(document.querySelectorAll('input[name="labels"]:checked')).map(cb => cb.value);
+      const data = {
         title,
-        description: document.getElementById('taskDescription').value.trim(),
-        priority: document.getElementById('taskPriority').value,
-        assignee: document.getElementById('taskAssignee').value,
-        column: document.getElementById('taskColumn').value,
-        labels,
-        updatedAt: new Date().toISOString()
+        description: $('taskDescription').value.trim(),
+        priority: $('taskPriority').value,
+        column: $('taskColumn').value,
+        labels
       };
-      
-      if (taskId) {
-        // Update existing
-        const task = tasks.find(t => t.id === taskId);
-        if (task) {
-          Object.assign(task, taskData);
-        }
+
+      const id = $('taskId').value;
+      if (id) {
+        const t = tasks.find(x => x.id === id);
+        if (t) Object.assign(t, data);
       } else {
-        // Create new
-        tasks.push({
-          id: generateTaskId(),
-          ...taskData,
-          comments: [],
-          createdAt: new Date().toISOString()
-        });
+        taskCounter++;
+        tasks.push({ id: 'RB-' + taskCounter, ...data });
       }
-      
-      saveToCloud();
+
+      save();
       renderBoard();
-      closeTaskModal();
+      hide('taskModal');
     }
 
     function deleteTask() {
-      const taskId = document.getElementById('taskId').value;
-      if (taskId && confirm('Are you sure you want to delete this task?')) {
-        tasks = tasks.filter(t => t.id !== taskId);
-        saveToCloud();
+      const id = $('taskId').value;
+      if (id && confirm('Delete this task?')) {
+        tasks = tasks.filter(t => t.id !== id);
+        save();
         renderBoard();
-        closeTaskModal();
+        hide('taskModal');
       }
     }
 
-    function openShareModal() {
-      document.getElementById('boardIdDisplay').textContent = boardId;
-      document.getElementById('boardUrlDisplay').textContent = window.location.origin + window.location.pathname + '?board=' + boardId;
-      shareModal.classList.add('active');
+    // ===== EVENT LISTENERS =====
+    function setupPasscodeInputs() {
+      const digits = document.querySelectorAll('.passcode-digit');
+      digits.forEach((d, i) => {
+        d.addEventListener('input', e => {
+          e.target.value = e.target.value.replace(/\D/g, '');
+          if (e.target.value && i < 3) digits[i + 1].focus();
+          if (getPasscode().length === 4) $('submitPasscodeBtn').click();
+        });
+        d.addEventListener('keydown', e => {
+          if (e.key === 'Backspace' && !e.target.value && i > 0) digits[i - 1].focus();
+        });
+      });
     }
 
-    function closeShareModal() {
-      shareModal.classList.remove('active');
-    }
-
-    // Setup event listeners
     function setupEventListeners() {
-      // Column drag events
-      document.querySelectorAll('.column-body').forEach(col => {
-        col.addEventListener('dragover', handleDragOver);
-        col.addEventListener('dragleave', handleDragLeave);
-        col.addEventListener('drop', handleDrop);
+      // Welcome modal
+      $('createBoardBtn').addEventListener('click', () => {
+        hide('welcomeModal');
+        passcodeMode = 'create';
+        $('passcodeTitle').textContent = '🔒 Set Passcode';
+        $('passcodePrompt').textContent = 'Create a 4-digit passcode to protect your board.';
+        $('submitPasscodeBtn').textContent = 'Create';
+        $('startFreshLink').style.display = 'none';
+        clearPasscode();
+        show('passcodeModal');
+        document.querySelector('.passcode-digit').focus();
       });
-      
-      // Add card buttons
-      document.querySelectorAll('.add-card-btn').forEach(btn => {
-        btn.addEventListener('click', () => openTaskModal(null, btn.dataset.column));
-      });
-      
-      // New task button
-      document.getElementById('newTaskBtn').addEventListener('click', () => openTaskModal());
-      
-      // Modal buttons
-      document.getElementById('closeModal').addEventListener('click', closeTaskModal);
-      document.getElementById('cancelBtn').addEventListener('click', closeTaskModal);
-      document.getElementById('saveTaskBtn').addEventListener('click', saveTask);
-      document.getElementById('deleteTaskBtn').addEventListener('click', deleteTask);
-      document.getElementById('addCommentBtn').addEventListener('click', addComment);
-      
-      // Close modal on overlay click
-      taskModal.addEventListener('click', (e) => {
-        if (e.target === taskModal) closeTaskModal();
-      });
-      
-      // Filters
-      searchBox.addEventListener('input', renderBoard);
-      filterAssignee.addEventListener('change', renderBoard);
-      filterPriority.addEventListener('change', renderBoard);
-      filterLabel.addEventListener('change', renderBoard);
-      
-      // Refresh
-      document.getElementById('refreshBtn').addEventListener('click', loadFromCloud);
-      
-      // Share
-      document.getElementById('shareBtn').addEventListener('click', openShareModal);
-      document.getElementById('closeShareModal').addEventListener('click', closeShareModal);
-      shareModal.addEventListener('click', (e) => {
-        if (e.target === shareModal) closeShareModal();
-      });
-      
-      document.getElementById('copyBoardId').addEventListener('click', () => {
-        navigator.clipboard.writeText(boardId);
-        document.getElementById('copyBoardId').textContent = '✓ Copied!';
-        setTimeout(() => document.getElementById('copyBoardId').textContent = '📋 Copy ID', 2000);
-      });
-      
-      document.getElementById('copyBoardUrl').addEventListener('click', () => {
-        const url = window.location.origin + window.location.pathname + '?board=' + boardId;
-        navigator.clipboard.writeText(url);
-        document.getElementById('copyBoardUrl').textContent = '✓ Copied!';
-        setTimeout(() => document.getElementById('copyBoardUrl').textContent = '📋 Copy URL', 2000);
-      });
-      
-      // Setup modal
-      document.getElementById('createBoardBtn').addEventListener('click', createBoard);
-      document.getElementById('joinBoardBtn').addEventListener('click', () => {
-        const id = document.getElementById('joinBoardId').value;
-        if (id) joinBoard(id);
-      });
-      document.getElementById('joinBoardId').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          const id = document.getElementById('joinBoardId').value;
-          if (id) joinBoard(id);
+
+      $('joinBoardBtn').addEventListener('click', () => {
+        const id = $('joinBoardId').value.trim();
+        if (id) {
+          boardId = id;
+          localStorage.setItem(STORAGE_KEY, id);
+          hide('welcomeModal');
+          checkBoard();
         }
       });
-      
+
       // Passcode modal
-      document.getElementById('submitPasscodeBtn').addEventListener('click', handlePasscodeSubmit);
-      document.getElementById('resetBoardLink').addEventListener('click', (e) => {
+      $('submitPasscodeBtn').addEventListener('click', handlePasscode);
+      $('startFreshLink').querySelector('a').addEventListener('click', e => {
         e.preventDefault();
         localStorage.removeItem(STORAGE_KEY);
         boardId = null;
-        encryptionKey = null;
-        passcodeModal.classList.remove('active');
-        setupModal.classList.add('active');
+        cryptoKey = null;
+        hide('passcodeModal');
+        show('welcomeModal');
       });
-      
-      // Keyboard shortcuts
-      document.addEventListener('keydown', (e) => {
+
+      // Task modal
+      $('newTaskBtn').addEventListener('click', () => openTask());
+      $('closeModal').addEventListener('click', () => hide('taskModal'));
+      $('cancelBtn').addEventListener('click', () => hide('taskModal'));
+      $('saveTaskBtn').addEventListener('click', saveTask);
+      $('deleteTaskBtn').addEventListener('click', deleteTask);
+      $('taskModal').addEventListener('click', e => { if (e.target === $('taskModal')) hide('taskModal'); });
+
+      // Add card buttons
+      document.querySelectorAll('.add-card-btn').forEach(btn => {
+        btn.addEventListener('click', () => openTask(null, btn.dataset.column));
+      });
+
+      // Drag & drop
+      document.querySelectorAll('.column-body').forEach(col => {
+        col.addEventListener('dragover', e => { e.preventDefault(); col.classList.add('drag-over'); });
+        col.addEventListener('dragleave', () => col.classList.remove('drag-over'));
+        col.addEventListener('drop', e => {
+          e.preventDefault();
+          col.classList.remove('drag-over');
+          const id = e.dataTransfer.getData('text');
+          const t = tasks.find(x => x.id === id);
+          if (t && t.column !== col.dataset.column) {
+            t.column = col.dataset.column;
+            save();
+            renderBoard();
+          }
+        });
+      });
+
+      // Filters
+      $('searchBox').addEventListener('input', renderBoard);
+      $('filterPriority').addEventListener('change', renderBoard);
+
+      // Refresh
+      $('refreshBtn').addEventListener('click', () => {
+        if (cryptoKey) unlockBoard(getPasscode());
+        else checkBoard();
+      });
+
+      // Share
+      $('shareBtn').addEventListener('click', () => {
+        $('boardIdDisplay').textContent = boardId || 'No board';
+        show('shareModal');
+      });
+      $('closeShareModal').addEventListener('click', () => hide('shareModal'));
+      $('shareModal').addEventListener('click', e => { if (e.target === $('shareModal')) hide('shareModal'); });
+      $('copyBoardId').addEventListener('click', () => {
+        navigator.clipboard.writeText(boardId);
+        $('copyBoardId').textContent = '✓ Copied!';
+        setTimeout(() => $('copyBoardId').textContent = '📋 Copy', 2000);
+      });
+
+      // Keyboard
+      document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
-          closeTaskModal();
-          closeShareModal();
+          hide('taskModal');
+          hide('shareModal');
         }
       });
     }
