@@ -328,6 +328,7 @@
         <option value="low">Low</option>
       </select>
       <button class="btn" id="newTaskBtn">+ New Task</button>
+      <button class="btn btn-secondary btn-small" id="refreshBtn" title="Refresh from GitHub">🔄</button>
       <button class="btn btn-secondary btn-small" id="exportBtn" title="Export/Import">📤</button>
     </div>
   </header>
@@ -471,6 +472,7 @@
 
   <script>
     // ===== CONFIG =====
+    const TASKS_URL = 'https://raw.githubusercontent.com/redrum13x/RabbitAI_MainRepo/main/kanban/tasks.json';
     const STORAGE_KEY = 'rabbit-board-data';
     const VERIFY_STR = 'RABBIT_OK';
 
@@ -480,6 +482,7 @@
     let cryptoKey = null;
     let currentSalt = null;
     let passcodeMode = 'create'; // 'create' or 'unlock'
+    let isReadOnly = false; // true when loaded from GitHub
 
     // ===== CRYPTO HELPERS =====
     const encode = s => new TextEncoder().encode(s);
@@ -528,13 +531,22 @@
     }
 
     // ===== INIT =====
-    function init() {
+    async function init() {
       setupPasscodeInputs();
       setupEventListeners();
 
+      // Try to load from GitHub first (shared team board)
+      const loaded = await loadFromGitHub();
+      if (loaded) {
+        isReadOnly = true;
+        status('synced', '📡 Synced from GitHub (read-only)');
+        renderBoard();
+        return;
+      }
+
+      // Fall back to local encrypted storage
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        // Existing board - need passcode to unlock
         passcodeMode = 'unlock';
         $('passcodeTitle').textContent = '🔒 Enter Passcode';
         $('passcodePrompt').textContent = 'Enter your 4-digit passcode to unlock.';
@@ -542,13 +554,39 @@
         show('passcodeModal');
         document.querySelector('.passcode-digit').focus();
       } else {
-        // New board - set passcode
         passcodeMode = 'create';
         $('passcodeTitle').textContent = '🔒 Set Passcode';
         $('passcodePrompt').textContent = 'Create a 4-digit passcode to protect your board.';
         $('submitPasscodeBtn').textContent = 'Create Board';
         show('passcodeModal');
         document.querySelector('.passcode-digit').focus();
+      }
+    }
+
+    // Load tasks from GitHub raw URL
+    async function loadFromGitHub() {
+      try {
+        const res = await fetch(TASKS_URL + '?t=' + Date.now()); // Cache bust
+        if (!res.ok) return false;
+        const data = await res.json();
+        tasks = data.tasks || [];
+        taskCounter = data.taskCounter || 0;
+        return true;
+      } catch (e) {
+        console.log('GitHub load failed, using local storage');
+        return false;
+      }
+    }
+
+    // Refresh from GitHub
+    async function refreshFromGitHub() {
+      status('syncing', 'Refreshing...');
+      const loaded = await loadFromGitHub();
+      if (loaded) {
+        renderBoard();
+        status('synced', '📡 Refreshed from GitHub');
+      } else {
+        status('error', 'Refresh failed');
       }
     }
 
@@ -635,6 +673,11 @@
 
     // ===== SAVE =====
     async function save() {
+      if (isReadOnly) {
+        status('synced', '📡 Read-only mode — ask Rabbit to update');
+        return;
+      }
+      
       if (!cryptoKey) return;
 
       try {
@@ -851,6 +894,9 @@
       // Filters
       $('searchBox').addEventListener('input', renderBoard);
       $('filterPriority').addEventListener('change', renderBoard);
+
+      // Refresh
+      $('refreshBtn').addEventListener('click', refreshFromGitHub);
 
       // Export/Import
       $('exportBtn').addEventListener('click', showExport);
