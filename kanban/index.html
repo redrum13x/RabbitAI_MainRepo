@@ -992,13 +992,52 @@
       }
 
       if (boardId) {
-        // Show passcode modal to decrypt
-        showPasscodeModal(false);
+        // Check if board exists and needs passcode
+        await checkBoardAndPrompt();
       } else {
         setupModal.classList.add('active');
       }
 
       setupEventListeners();
+    }
+    
+    // Check board status and show appropriate modal
+    async function checkBoardAndPrompt() {
+      setSyncStatus('syncing', 'Checking board...');
+      
+      try {
+        const response = await fetch(`${API_BASE}/${boardId}`);
+        
+        if (!response.ok) {
+          // Board doesn't exist
+          setSyncStatus('error', 'Board not found');
+          localStorage.removeItem(STORAGE_KEY);
+          boardId = null;
+          setupModal.classList.add('active');
+          return;
+        }
+        
+        const payload = await response.json();
+        
+        if (payload.encrypted) {
+          // Encrypted board - need passcode
+          showPasscodeModal(false);
+        } else {
+          // Legacy unencrypted board - load directly
+          tasks = payload.tasks || [];
+          taskCounter = payload.taskCounter || 0;
+          renderBoard();
+          setSyncStatus('synced', 'Synced ✓ (unencrypted)');
+          
+          const newUrl = window.location.pathname + '?board=' + boardId;
+          window.history.replaceState({}, '', newUrl);
+        }
+      } catch (e) {
+        console.error(e);
+        setSyncStatus('error', 'Failed to check board');
+        // Show setup modal as fallback
+        setupModal.classList.add('active');
+      }
     }
     
     // Show passcode modal
