@@ -18,18 +18,20 @@
       "title": "Update board UI with agent avatars",
       "description": "Add assignee icons/avatars to cards. Include visual indicator (glow/pulse) when agent is actively working on a task. Assignees: Rabbit 🐇, Rabbit_Coder 💻",
       "priority": "high",
-      "column": "inprogress",
+      "column": "done",
       "labels": ["feature"],
       "assignee": "Rabbit_Coder",
-      "activelyWorking": true,
-      "createdAt": "2026-02-05T16:50:00Z"
+      "activelyWorking": false,
+      "createdAt": "2026-02-05T16:50:00Z",
+      "completedAt": "2026-02-05T17:12:00Z",
+      "notes": "✅ Cyan glow effects, pulsing animations, agent legend footer. ~100 lines CSS added."
     }
   ],
   "taskCounter": 2,
   "agents": {
     "Rabbit": { "icon": "🐇", "role": "Orchestrator", "status": "active" },
-    "Rabbit_Coder": { "icon": "💻", "role": "Coder", "status": "working" },
+    "Rabbit_Coder": { "icon": "💻", "role": "Coder", "status": "idle" },
     "Grant": { "icon": "👤", "role": "PM", "status": "human" }
   },
-  "lastUpdated": "2026-02-05T17:10:00Z"
+  "lastUpdated": "2026-02-05T17:12:00Z"
 }
