@@ -47,7 +47,8 @@
       "activelyWorking": false,
       "createdAt": "2026-02-05T17:18:00Z",
       "completedAt": "2026-02-05T17:28:00Z",
-      "notes": "✅ 15 Mermaid flowcharts showing components, data flow, AI layers, integrations"
+      "notes": "✅ 15 Mermaid flowcharts showing components, data flow, AI layers, integrations",
+      "private": true
     },
     {
       "id": "RB-5",
@@ -60,7 +61,8 @@
       "activelyWorking": false,
       "createdAt": "2026-02-05T17:18:00Z",
       "completedAt": "2026-02-05T17:25:00Z",
-      "notes": "✅ Major players (Intelex, Enablon, VelocityEHS, SafetyCulture), CV/wearable vendors, market data"
+      "notes": "✅ Major players (Intelex, Enablon, VelocityEHS, SafetyCulture), CV/wearable vendors, market data",
+      "private": true
     },
     {
       "id": "RB-6",
@@ -73,7 +75,8 @@
       "activelyWorking": false,
       "createdAt": "2026-02-05T17:18:00Z",
       "completedAt": "2026-02-05T17:22:00Z",
-      "notes": "✅ Full writeup with tiered priorities, dependencies, metrics"
+      "notes": "✅ Full writeup with tiered priorities, dependencies, metrics",
+      "private": true
     }
   ],
   "taskCounter": 6,

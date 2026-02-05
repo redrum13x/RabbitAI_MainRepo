@@ -156,6 +156,7 @@
     .card.priority-high { border-left-color: var(--priority-high); }
     .card.priority-medium { border-left-color: var(--priority-medium); }
     .card.priority-low { border-left-color: var(--priority-low); }
+    .card.private-task { background: linear-gradient(135deg, var(--bg-card) 0%, rgba(139, 92, 246, 0.15) 100%); }
 
     .card-id { font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
     .card-title { font-weight: 500; margin-bottom: 0.5rem; }
@@ -507,6 +508,11 @@
             <label class="label-checkbox"><input type="checkbox" name="labels" value="ai"> AI</label>
             <label class="label-checkbox"><input type="checkbox" name="labels" value="infra"> Infra</label>
           </div>
+        </div>
+        <div class="form-group">
+          <label class="label-checkbox" style="font-weight: 500;">
+            <input type="checkbox" id="taskPrivate"> 🔒 Private (local only, not synced to GitHub)
+          </label>
         </div>
       </div>
       <div class="modal-footer">
@@ -867,6 +873,8 @@
         const body = document.querySelector(`.column-body[data-column="${col}"]`);
         const filtered = tasks.filter(t => {
           if (t.column !== col) return false;
+          // Hide private tasks in read-only mode (GitHub sync)
+          if (t.private && isReadOnly) return false;
           if (search && !t.title.toLowerCase().includes(search)) return false;
           if (priority && t.priority !== priority) return false;
           return true;
@@ -877,8 +885,8 @@
           const icon = agent.icon || '👤';
           const isActive = t.activelyWorking;
           return `
-            <div class="card priority-${t.priority} ${isActive ? 'has-active' : ''}" data-id="${t.id}" draggable="true">
-              <div class="card-id">${t.id}</div>
+            <div class="card priority-${t.priority} ${isActive ? 'has-active' : ''} ${t.private ? 'private-task' : ''}" data-id="${t.id}" draggable="true">
+              <div class="card-id">${t.private ? '🔒 ' : ''}${t.id}</div>
               <div class="card-title">${esc(t.title)}</div>
               ${t.description ? `<div class="card-description">${esc(t.description)}</div>` : ''}
               <div class="card-meta">
@@ -920,6 +928,7 @@
         $('taskDescription').value = '';
         $('taskPriority').value = 'medium';
         $('taskColumn').value = col;
+        $('taskPrivate').checked = false;
         document.querySelectorAll('input[name="labels"]').forEach(cb => cb.checked = false);
       } else {
         const t = tasks.find(x => x.id === id);
@@ -929,6 +938,7 @@
           $('taskDescription').value = t.description || '';
           $('taskPriority').value = t.priority;
           $('taskColumn').value = t.column;
+          $('taskPrivate').checked = !!t.private;
           document.querySelectorAll('input[name="labels"]').forEach(cb => cb.checked = (t.labels || []).includes(cb.value));
         }
       }
@@ -941,12 +951,14 @@
       if (!title) { alert('Title required'); return; }
 
       const labels = Array.from(document.querySelectorAll('input[name="labels"]:checked')).map(cb => cb.value);
+      const isPrivate = $('taskPrivate').checked;
       const data = {
         title,
         description: $('taskDescription').value.trim(),
         priority: $('taskPriority').value,
         column: $('taskColumn').value,
-        labels
+        labels,
+        private: isPrivate
       };
 
       const id = $('taskId').value;
