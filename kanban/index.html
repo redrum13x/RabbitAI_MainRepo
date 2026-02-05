@@ -630,6 +630,14 @@
       }
     }
 
+    // Generate a random blob ID (UUID-like)
+    function generateBlobId() {
+      const arr = new Uint8Array(16);
+      crypto.getRandomValues(arr);
+      // Convert to hex string
+      return Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
     async function createEncryptedBoard(code) {
       status('syncing', 'Creating encrypted board...');
       try {
@@ -647,16 +655,16 @@
           data: encData
         };
 
-        const res = await fetch(API, {
-          method: 'POST',
+        // Generate our own blob ID and use PUT to create it
+        boardId = generateBlobId();
+        
+        const res = await fetch(`${API}/${boardId}`, {
+          method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
 
-        if (!res.ok) throw new Error('Failed to create');
-
-        boardId = res.headers.get('X-Jsonblob') || res.headers.get('Location')?.split('/').pop();
-        if (!boardId && res.url) boardId = res.url.split('/').pop();
+        if (!res.ok) throw new Error('Failed to create: ' + res.status);
 
         localStorage.setItem(STORAGE_KEY, boardId);
         currentSalt = salt;
