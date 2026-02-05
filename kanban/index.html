@@ -53,7 +53,6 @@
       font-size: 1.5rem;
       font-weight: 700;
     }
-
     .logo span { color: var(--accent); }
 
     .sync-status {
@@ -61,7 +60,6 @@
       color: var(--text-secondary);
       margin-left: 1rem;
     }
-    .sync-status.syncing { color: #ffd166; }
     .sync-status.synced { color: #06d6a0; }
     .sync-status.error { color: #e94560; }
 
@@ -141,7 +139,6 @@
       overflow-y: auto;
       min-height: 200px;
     }
-
     .column-body.drag-over { background: rgba(233, 69, 96, 0.1); }
 
     .card {
@@ -271,16 +268,6 @@
     .setup-section h3 { margin-bottom: 1rem; }
     .setup-section p { color: var(--text-secondary); margin-bottom: 1.5rem; }
 
-    .board-id-display {
-      background: var(--bg-primary);
-      padding: 1rem;
-      border-radius: 6px;
-      font-family: monospace;
-      font-size: 1.1rem;
-      margin: 1rem 0;
-      word-break: break-all;
-    }
-
     /* Passcode */
     .passcode-input {
       display: flex;
@@ -303,16 +290,18 @@
     .passcode-error { color: var(--priority-critical); font-size: 0.9rem; margin-top: 0.5rem; min-height: 1.5rem; }
     .lock-icon { font-size: 3rem; margin-bottom: 1rem; }
 
-    .comments-section { margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
-    .comments-section h3 { font-size: 1rem; margin-bottom: 1rem; }
-    .comment { background: var(--bg-primary); border-radius: 6px; padding: 0.75rem; margin-bottom: 0.75rem; }
-    .comment-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.8rem; }
-    .comment-author { font-weight: 600; }
-    .comment-date { color: var(--text-secondary); }
-    .comment-body { font-size: 0.9rem; white-space: pre-wrap; }
-    .add-comment { display: flex; gap: 0.5rem; margin-top: 1rem; }
-    .add-comment textarea { flex: 1; min-height: 60px; }
-    .add-comment-controls { display: flex; flex-direction: column; gap: 0.5rem; }
+    .export-area {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.8rem;
+      max-height: 200px;
+      overflow-y: auto;
+      word-break: break-all;
+      margin: 1rem 0;
+    }
 
     @media (max-width: 768px) {
       header { padding: 1rem; }
@@ -339,8 +328,7 @@
         <option value="low">Low</option>
       </select>
       <button class="btn" id="newTaskBtn">+ New Task</button>
-      <button class="btn btn-secondary btn-small" id="refreshBtn" title="Refresh">🔄</button>
-      <button class="btn btn-secondary btn-small" id="shareBtn" title="Share">🔗</button>
+      <button class="btn btn-secondary btn-small" id="exportBtn" title="Export/Import">📤</button>
     </div>
   </header>
 
@@ -433,39 +421,16 @@
     </div>
   </div>
 
-  <!-- Welcome Modal -->
-  <div class="modal-overlay" id="welcomeModal">
-    <div class="modal" style="max-width: 500px;">
-      <div class="modal-header">
-        <h2>🐇 Welcome to Rabbit Board</h2>
-      </div>
-      <div class="modal-body">
-        <div class="setup-section">
-          <h3>Create New Board</h3>
-          <p>Start a fresh encrypted board with a 4-digit passcode.</p>
-          <button class="btn" id="createBoardBtn">Create New Board</button>
-        </div>
-        <hr style="border-color: var(--border); margin: 2rem 0;">
-        <div class="setup-section">
-          <h3>Join Existing Board</h3>
-          <p>Enter a board ID to access an existing board.</p>
-          <input type="text" id="joinBoardId" placeholder="Enter board ID..." style="width: 100%; margin-bottom: 1rem;">
-          <button class="btn btn-secondary" id="joinBoardBtn">Join Board</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Passcode Modal -->
   <div class="modal-overlay" id="passcodeModal">
     <div class="modal" style="max-width: 400px;">
       <div class="modal-header">
-        <h2 id="passcodeTitle">🔒 Enter Passcode</h2>
+        <h2 id="passcodeTitle">🔒 Set Passcode</h2>
       </div>
       <div class="modal-body">
         <div class="setup-section">
           <div class="lock-icon">🔐</div>
-          <p id="passcodePrompt">Enter your 4-digit passcode.</p>
+          <p id="passcodePrompt">Create a 4-digit passcode to protect your board.</p>
           <div class="passcode-input">
             <input type="password" class="passcode-digit" maxlength="1" inputmode="numeric">
             <input type="password" class="passcode-digit" maxlength="1" inputmode="numeric">
@@ -474,26 +439,31 @@
           </div>
           <div class="passcode-error" id="passcodeError"></div>
           <button class="btn" id="submitPasscodeBtn">Submit</button>
-          <p id="startFreshLink" style="margin-top: 1.5rem; font-size: 0.85rem; display: none;">
-            <a href="#" style="color: var(--accent);">Start fresh with a new board</a>
-          </p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Share Modal -->
-  <div class="modal-overlay" id="shareModal">
+  <!-- Export/Import Modal -->
+  <div class="modal-overlay" id="exportModal">
     <div class="modal" style="max-width: 500px;">
       <div class="modal-header">
-        <h2>🔗 Share Board</h2>
-        <button class="modal-close" id="closeShareModal">&times;</button>
+        <h2>📤 Export / Import</h2>
+        <button class="modal-close" id="closeExportModal">&times;</button>
       </div>
       <div class="modal-body">
         <div class="setup-section">
-          <p>Board ID:</p>
-          <div class="board-id-display" id="boardIdDisplay"></div>
-          <button class="btn" id="copyBoardId">📋 Copy</button>
+          <h3>Export Board</h3>
+          <p>Copy this encrypted data to transfer your board to another device.</p>
+          <div class="export-area" id="exportData"></div>
+          <button class="btn" id="copyExportBtn">📋 Copy to Clipboard</button>
+        </div>
+        <hr style="border-color: var(--border); margin: 2rem 0;">
+        <div class="setup-section">
+          <h3>Import Board</h3>
+          <p>Paste exported data to restore your board. This will replace current data.</p>
+          <textarea id="importData" placeholder="Paste exported data here..." style="width: 100%; min-height: 100px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 1rem; color: var(--text-primary); font-family: monospace; font-size: 0.8rem;"></textarea>
+          <button class="btn btn-secondary" id="importBtn" style="margin-top: 1rem;">Import</button>
         </div>
       </div>
     </div>
@@ -501,17 +471,15 @@
 
   <script>
     // ===== CONFIG =====
-    const API = 'https://jsonblob.com/api/jsonBlob';
-    const STORAGE_KEY = 'rabbit-board-id';
+    const STORAGE_KEY = 'rabbit-board-data';
     const VERIFY_STR = 'RABBIT_OK';
 
     // ===== STATE =====
-    let boardId = null;
     let tasks = [];
     let taskCounter = 0;
     let cryptoKey = null;
     let currentSalt = null;
-    let passcodeMode = 'unlock'; // 'unlock' or 'create'
+    let passcodeMode = 'create'; // 'create' or 'unlock'
 
     // ===== CRYPTO HELPERS =====
     const encode = s => new TextEncoder().encode(s);
@@ -560,58 +528,27 @@
     }
 
     // ===== INIT =====
-    async function init() {
+    function init() {
       setupPasscodeInputs();
       setupEventListeners();
 
-      // Check URL or localStorage for board ID
-      const params = new URLSearchParams(location.search);
-      boardId = params.get('board') || localStorage.getItem(STORAGE_KEY);
-
-      if (boardId) {
-        localStorage.setItem(STORAGE_KEY, boardId);
-        await checkBoard();
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        // Existing board - need passcode to unlock
+        passcodeMode = 'unlock';
+        $('passcodeTitle').textContent = '🔒 Enter Passcode';
+        $('passcodePrompt').textContent = 'Enter your 4-digit passcode to unlock.';
+        $('submitPasscodeBtn').textContent = 'Unlock';
+        show('passcodeModal');
+        document.querySelector('.passcode-digit').focus();
       } else {
-        show('welcomeModal');
-      }
-    }
-
-    // Check if board exists and determine if encrypted
-    async function checkBoard() {
-      status('syncing', 'Loading...');
-      try {
-        const res = await fetch(`${API}/${boardId}`);
-        if (!res.ok) {
-          status('error', 'Board not found');
-          localStorage.removeItem(STORAGE_KEY);
-          boardId = null;
-          show('welcomeModal');
-          return;
-        }
-
-        const data = await res.json();
-
-        if (data.encrypted) {
-          // Need passcode to decrypt
-          passcodeMode = 'unlock';
-          $('passcodeTitle').textContent = '🔒 Enter Passcode';
-          $('passcodePrompt').textContent = 'Enter your 4-digit passcode to unlock.';
-          $('submitPasscodeBtn').textContent = 'Unlock';
-          $('startFreshLink').style.display = 'block';
-          currentSalt = fromB64(data.salt);
-          show('passcodeModal');
-        } else {
-          // Legacy unencrypted - load directly
-          tasks = data.tasks || [];
-          taskCounter = data.taskCounter || 0;
-          renderBoard();
-          status('synced', 'Loaded (unencrypted)');
-          updateUrl();
-        }
-      } catch (e) {
-        console.error(e);
-        status('error', 'Failed to load');
-        show('welcomeModal');
+        // New board - set passcode
+        passcodeMode = 'create';
+        $('passcodeTitle').textContent = '🔒 Set Passcode';
+        $('passcodePrompt').textContent = 'Create a 4-digit passcode to protect your board.';
+        $('submitPasscodeBtn').textContent = 'Create Board';
+        show('passcodeModal');
+        document.querySelector('.passcode-digit').focus();
       }
     }
 
@@ -624,73 +561,52 @@
       }
 
       if (passcodeMode === 'create') {
-        await createEncryptedBoard(code);
+        await createBoard(code);
       } else {
         await unlockBoard(code);
       }
     }
 
-    // Generate a random blob ID (UUID-like)
-    function generateBlobId() {
-      const arr = new Uint8Array(16);
-      crypto.getRandomValues(arr);
-      // Convert to hex string
-      return Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    async function createEncryptedBoard(code) {
-      status('syncing', 'Creating encrypted board...');
+    async function createBoard(code) {
       try {
         const salt = crypto.getRandomValues(new Uint8Array(16));
         cryptoKey = await deriveKey(code, salt);
+        currentSalt = salt;
 
         const verifier = await encrypt(VERIFY_STR, cryptoKey);
         const boardData = { tasks: [], taskCounter: 0 };
         const encData = await encrypt(boardData, cryptoKey);
 
         const payload = {
-          encrypted: true,
           salt: toB64(salt),
           verifier,
           data: encData
         };
 
-        // Generate our own blob ID and use PUT to create it
-        boardId = generateBlobId();
-        
-        const res = await fetch(`${API}/${boardId}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if (!res.ok) throw new Error('Failed to create: ' + res.status);
-
-        localStorage.setItem(STORAGE_KEY, boardId);
-        currentSalt = salt;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
         tasks = [];
         taskCounter = 0;
 
         hide('passcodeModal');
-        hide('welcomeModal');
         renderBoard();
-        status('synced', '🔒 Created');
-        updateUrl();
+        status('synced', '🔒 Ready');
       } catch (e) {
         console.error(e);
         $('passcodeError').textContent = 'Failed to create board';
-        status('error', 'Failed');
       }
     }
 
     async function unlockBoard(code) {
-      status('syncing', 'Unlocking...');
       try {
-        const res = await fetch(`${API}/${boardId}`);
-        if (!res.ok) throw new Error('Board not found');
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (!stored) {
+          $('passcodeError').textContent = 'No board found';
+          return;
+        }
 
-        const payload = await res.json();
+        const payload = JSON.parse(stored);
         cryptoKey = await deriveKey(code, fromB64(payload.salt));
+        currentSalt = fromB64(payload.salt);
 
         // Verify passcode
         try {
@@ -700,7 +616,6 @@
           $('passcodeError').textContent = 'Wrong passcode';
           clearPasscode();
           document.querySelector('.passcode-digit').focus();
-          status('error', 'Wrong passcode');
           return;
         }
 
@@ -708,47 +623,72 @@
         const data = await decrypt(payload.data, cryptoKey);
         tasks = data.tasks || [];
         taskCounter = data.taskCounter || 0;
-        currentSalt = fromB64(payload.salt);
 
         hide('passcodeModal');
         renderBoard();
         status('synced', '🔒 Unlocked');
-        updateUrl();
       } catch (e) {
         console.error(e);
         $('passcodeError').textContent = 'Failed to unlock';
-        status('error', 'Failed');
       }
     }
 
     // ===== SAVE =====
     async function save() {
-      if (!boardId || !cryptoKey) return;
-      status('syncing', 'Saving...');
+      if (!cryptoKey) return;
 
       try {
+        const verifier = await encrypt(VERIFY_STR, cryptoKey);
         const boardData = { tasks, taskCounter };
         const encData = await encrypt(boardData, cryptoKey);
-        const verifier = await encrypt(VERIFY_STR, cryptoKey);
 
         const payload = {
-          encrypted: true,
           salt: toB64(currentSalt),
           verifier,
           data: encData
         };
 
-        const res = await fetch(`${API}/${boardId}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if (!res.ok) throw new Error('Save failed');
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
         status('synced', '🔒 Saved');
       } catch (e) {
         console.error(e);
         status('error', 'Save failed');
+      }
+    }
+
+    // ===== EXPORT/IMPORT =====
+    function showExport() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      $('exportData').textContent = stored || 'No data to export';
+      show('exportModal');
+    }
+
+    async function importData() {
+      const data = $('importData').value.trim();
+      if (!data) {
+        alert('Please paste exported data');
+        return;
+      }
+
+      try {
+        const payload = JSON.parse(data);
+        if (!payload.salt || !payload.verifier || !payload.data) {
+          throw new Error('Invalid format');
+        }
+
+        localStorage.setItem(STORAGE_KEY, data);
+        hide('exportModal');
+        
+        // Reload to unlock
+        passcodeMode = 'unlock';
+        $('passcodeTitle').textContent = '🔒 Enter Passcode';
+        $('passcodePrompt').textContent = 'Enter the passcode for the imported board.';
+        $('submitPasscodeBtn').textContent = 'Unlock';
+        clearPasscode();
+        show('passcodeModal');
+        document.querySelector('.passcode-digit').focus();
+      } catch (e) {
+        alert('Invalid data format. Make sure you copied the complete export.');
       }
     }
 
@@ -773,7 +713,7 @@
             <div class="card-title">${esc(t.title)}</div>
             ${t.description ? `<div class="card-description">${esc(t.description)}</div>` : ''}
             <div class="card-meta">
-              <div class="card-labels">${t.labels.map(l => `<span class="label label-${l}">${l}</span>`).join('')}</div>
+              <div class="card-labels">${(t.labels || []).map(l => `<span class="label label-${l}">${l}</span>`).join('')}</div>
             </div>
           </div>
         `).join('');
@@ -792,10 +732,6 @@
       const d = document.createElement('div');
       d.textContent = s;
       return d.innerHTML;
-    }
-
-    function updateUrl() {
-      history.replaceState({}, '', location.pathname + '?board=' + boardId);
     }
 
     // ===== TASK MODAL =====
@@ -819,7 +755,7 @@
           $('taskDescription').value = t.description || '';
           $('taskPriority').value = t.priority;
           $('taskColumn').value = t.column;
-          document.querySelectorAll('input[name="labels"]').forEach(cb => cb.checked = t.labels.includes(cb.value));
+          document.querySelectorAll('input[name="labels"]').forEach(cb => cb.checked = (t.labels || []).includes(cb.value));
         }
       }
       show('taskModal');
@@ -879,39 +815,8 @@
     }
 
     function setupEventListeners() {
-      // Welcome modal
-      $('createBoardBtn').addEventListener('click', () => {
-        hide('welcomeModal');
-        passcodeMode = 'create';
-        $('passcodeTitle').textContent = '🔒 Set Passcode';
-        $('passcodePrompt').textContent = 'Create a 4-digit passcode to protect your board.';
-        $('submitPasscodeBtn').textContent = 'Create';
-        $('startFreshLink').style.display = 'none';
-        clearPasscode();
-        show('passcodeModal');
-        document.querySelector('.passcode-digit').focus();
-      });
-
-      $('joinBoardBtn').addEventListener('click', () => {
-        const id = $('joinBoardId').value.trim();
-        if (id) {
-          boardId = id;
-          localStorage.setItem(STORAGE_KEY, id);
-          hide('welcomeModal');
-          checkBoard();
-        }
-      });
-
-      // Passcode modal
+      // Passcode
       $('submitPasscodeBtn').addEventListener('click', handlePasscode);
-      $('startFreshLink').querySelector('a').addEventListener('click', e => {
-        e.preventDefault();
-        localStorage.removeItem(STORAGE_KEY);
-        boardId = null;
-        cryptoKey = null;
-        hide('passcodeModal');
-        show('welcomeModal');
-      });
 
       // Task modal
       $('newTaskBtn').addEventListener('click', () => openTask());
@@ -947,30 +852,22 @@
       $('searchBox').addEventListener('input', renderBoard);
       $('filterPriority').addEventListener('change', renderBoard);
 
-      // Refresh
-      $('refreshBtn').addEventListener('click', () => {
-        if (cryptoKey) unlockBoard(getPasscode());
-        else checkBoard();
+      // Export/Import
+      $('exportBtn').addEventListener('click', showExport);
+      $('closeExportModal').addEventListener('click', () => hide('exportModal'));
+      $('exportModal').addEventListener('click', e => { if (e.target === $('exportModal')) hide('exportModal'); });
+      $('copyExportBtn').addEventListener('click', () => {
+        navigator.clipboard.writeText($('exportData').textContent);
+        $('copyExportBtn').textContent = '✓ Copied!';
+        setTimeout(() => $('copyExportBtn').textContent = '📋 Copy to Clipboard', 2000);
       });
-
-      // Share
-      $('shareBtn').addEventListener('click', () => {
-        $('boardIdDisplay').textContent = boardId || 'No board';
-        show('shareModal');
-      });
-      $('closeShareModal').addEventListener('click', () => hide('shareModal'));
-      $('shareModal').addEventListener('click', e => { if (e.target === $('shareModal')) hide('shareModal'); });
-      $('copyBoardId').addEventListener('click', () => {
-        navigator.clipboard.writeText(boardId);
-        $('copyBoardId').textContent = '✓ Copied!';
-        setTimeout(() => $('copyBoardId').textContent = '📋 Copy', 2000);
-      });
+      $('importBtn').addEventListener('click', importData);
 
       // Keyboard
       document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
           hide('taskModal');
-          hide('shareModal');
+          hide('exportModal');
         }
       });
     }
