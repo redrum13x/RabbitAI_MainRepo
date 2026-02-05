@@ -804,6 +804,9 @@
           </div>
           <div class="passcode-error" id="passcodeError"></div>
           <button class="btn" id="submitPasscodeBtn" style="margin-top: 1rem;">Unlock</button>
+          <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+            Wrong board? <a href="#" id="resetBoardLink" style="color: var(--accent);">Start fresh</a>
+          </p>
         </div>
       </div>
     </div>
@@ -1599,6 +1602,14 @@
       
       // Passcode modal
       document.getElementById('submitPasscodeBtn').addEventListener('click', handlePasscodeSubmit);
+      document.getElementById('resetBoardLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem(STORAGE_KEY);
+        boardId = null;
+        encryptionKey = null;
+        passcodeModal.classList.remove('active');
+        setupModal.classList.add('active');
+      });
       
       // Keyboard shortcuts
       document.addEventListener('keydown', (e) => {
