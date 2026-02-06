@@ -77,14 +77,85 @@
       "completedAt": "2026-02-05T17:22:00Z",
       "notes": "✅ Full writeup with tiered priorities, dependencies, metrics",
       "private": true
+    },
+    {
+      "id": "RB-7",
+      "title": "Add competitive analysis to AI opportunities doc",
+      "description": "Cross-reference our opportunities vs industry/competitors. Add 12-month predictions, strategic positioning.",
+      "priority": "high",
+      "column": "done",
+      "labels": ["research", "strategy"],
+      "assignee": "Rabbit",
+      "activelyWorking": false,
+      "createdAt": "2026-02-06T14:22:00Z",
+      "completedAt": "2026-02-06T14:31:00Z",
+      "notes": "✅ Added competitor context per opportunity, market trends, strategic moats",
+      "private": true
+    },
+    {
+      "id": "RB-8",
+      "title": "Enable web search (Brave API)",
+      "description": "Get Brave API key and configure for real-time competitive research.",
+      "priority": "high",
+      "column": "todo",
+      "labels": ["infra"],
+      "assignee": "Grant",
+      "activelyWorking": false,
+      "createdAt": "2026-02-06T14:58:00Z"
+    },
+    {
+      "id": "RB-9",
+      "title": "Set up Google Drive access",
+      "description": "Configure browser automation with redrum137@gmail.com for Google Docs/Drive access.",
+      "priority": "medium",
+      "column": "todo",
+      "labels": ["infra"],
+      "assignee": "Grant",
+      "activelyWorking": false,
+      "createdAt": "2026-02-06T14:58:00Z"
+    },
+    {
+      "id": "RB-10",
+      "title": "Calendar integration",
+      "description": "Set up calendar read access so Rabbit can factor in Grant's schedule.",
+      "priority": "medium",
+      "column": "todo",
+      "labels": ["infra"],
+      "assignee": "Grant",
+      "activelyWorking": false,
+      "createdAt": "2026-02-06T14:58:00Z"
+    },
+    {
+      "id": "RB-11",
+      "title": "Document agent orchestration rules",
+      "description": "Formalize when to use Rabbit vs Rabbit_Coder vs Rabbit_Researcher.",
+      "priority": "medium",
+      "column": "inprogress",
+      "labels": ["docs"],
+      "assignee": "Rabbit",
+      "activelyWorking": true,
+      "createdAt": "2026-02-06T14:58:00Z"
+    },
+    {
+      "id": "RB-12",
+      "title": "Set up daily memory logs",
+      "description": "Establish habit of writing daily memory logs and curating MEMORY.md.",
+      "priority": "medium",
+      "column": "done",
+      "labels": ["docs"],
+      "assignee": "Rabbit",
+      "activelyWorking": false,
+      "createdAt": "2026-02-06T14:58:00Z",
+      "completedAt": "2026-02-06T15:00:00Z",
+      "notes": "✅ Created MEMORY.md and 2026-02-06.md"
     }
   ],
-  "taskCounter": 6,
+  "taskCounter": 12,
   "agents": {
     "Rabbit": { "icon": "🐇", "role": "Orchestrator", "status": "active" },
     "Rabbit_Coder": { "icon": "💻", "role": "Coder", "status": "idle" },
     "Rabbit_Researcher": { "icon": "🔍", "role": "Researcher", "status": "idle" },
     "Grant": { "icon": "👤", "role": "PM", "status": "human" }
   },
-  "lastUpdated": "2026-02-05T17:30:00Z"
+  "lastUpdated": "2026-02-06T15:00:00Z"
 }
