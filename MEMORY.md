@@ -100,7 +100,7 @@
 ---
 
 ## Pending Setup
-- [ ] Brave API key for web search
+- [x] Brave API key for web search ✅ 2026-02-06
 - [ ] Google Drive access (redrum137@gmail.com)
 - [ ] Calendar integration
 

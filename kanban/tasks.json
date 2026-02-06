@@ -97,11 +97,13 @@
       "title": "Enable web search (Brave API)",
       "description": "Get Brave API key and configure for real-time competitive research.",
       "priority": "high",
-      "column": "todo",
+      "column": "done",
       "labels": ["infra"],
       "assignee": "Grant",
       "activelyWorking": false,
-      "createdAt": "2026-02-06T14:58:00Z"
+      "createdAt": "2026-02-06T14:58:00Z",
+      "completedAt": "2026-02-06T15:06:00Z",
+      "notes": "✅ Brave API key added to config"
     },
     {
       "id": "RB-9",
@@ -130,11 +132,13 @@
       "title": "Document agent orchestration rules",
       "description": "Formalize when to use Rabbit vs Rabbit_Coder vs Rabbit_Researcher.",
       "priority": "medium",
-      "column": "inprogress",
+      "column": "done",
       "labels": ["docs"],
       "assignee": "Rabbit",
-      "activelyWorking": true,
-      "createdAt": "2026-02-06T14:58:00Z"
+      "activelyWorking": false,
+      "createdAt": "2026-02-06T14:58:00Z",
+      "completedAt": "2026-02-06T15:02:00Z",
+      "notes": "✅ Added orchestration rules to AGENTS.md"
     },
     {
       "id": "RB-12",
