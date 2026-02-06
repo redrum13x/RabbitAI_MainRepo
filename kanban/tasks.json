@@ -110,11 +110,13 @@
       "title": "Set up Google Drive access",
       "description": "Configure browser automation with redrum137@gmail.com for Google Docs/Drive access.",
       "priority": "medium",
-      "column": "todo",
+      "column": "done",
       "labels": ["infra"],
-      "assignee": "Grant",
+      "assignee": "Rabbit",
       "activelyWorking": false,
-      "createdAt": "2026-02-06T14:58:00Z"
+      "createdAt": "2026-02-06T14:58:00Z",
+      "completedAt": "2026-02-06T15:12:00Z",
+      "notes": "✅ Logged into Google as Grant Robertson via browser automation"
     },
     {
       "id": "RB-10",

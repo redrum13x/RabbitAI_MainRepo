@@ -101,8 +101,8 @@
 
 ## Pending Setup
 - [x] Brave API key for web search ✅ 2026-02-06
-- [ ] Google Drive access (redrum137@gmail.com)
-- [ ] Calendar integration
+- [x] Google Drive access (redrum137@gmail.com) ✅ 2026-02-06
+- [ ] Calendar integration (is redrum137 the calendar to use?)
 
 ---
 
