@@ -102,7 +102,32 @@
 ## Pending Setup
 - [x] Brave API key for web search ✅ 2026-02-06
 - [x] Google Drive access (redrum137@gmail.com) ✅ 2026-02-06
-- [ ] Calendar integration (is redrum137 the calendar to use?)
+- [x] Multi-account Discord for Creative ✅ 2026-02-07 (use `accountId: "creative"`)
+- [x] Local Ollama fallback ✅ 2026-02-07
+- [x] Auto-start at boot ✅ 2026-02-07
+- [x] Health monitoring ✅ 2026-02-07
+- [ ] Gmail integration (needs gcloud CLI)
+- [x] Google Drive integration ✅ 2026-02-07 (rclone + RabbitAI OAuth)
+- [ ] Calendar integration
+
+---
+
+## Hardware (Grant's PC)
+- **GPU:** RTX 3090 (24GB VRAM)
+- **PSU:** ROG Thor 1200W
+- **Storage:** Samsung 970 EVO Plus 1TB, MS100 1TB
+
+## Model Configuration (2026-02-07)
+
+**Claude agents:** Main, Security (Opus), Coder, Researcher, Creative, Ops (Sonnet)
+**Local Ollama agents:** EHS, Novara, PO (gpt-oss:20b on RTX 3090)
+**Fallback chain:** Opus → Sonnet → Local Ollama
+
+**Memory Search:** Local embeddings via Ollama (`nomic-embed-text`), hybrid BM25+vector
+
+**Confidence Protocol:** Sub-agents flag `[LOW_CONFIDENCE: reason]` if <85% confident; I escalate to Opus.
+
+**Gateway restart protocol:** Always post "✅ Back online" immediately after any restart.
 
 ---
 

@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌴 Our Florida Keys Honeymoon 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables - Dark Glassmorphism Theme */
+        :root {
+            /* Dark Theme Colors */
+            --clr-bg-dark: #0a0a0a;
+            --clr-overlay: rgba(0, 0, 0, 0.6);
+            --clr-text-primary: rgba(255, 255, 255, 0.95);
+            --clr-text-secondary: rgba(255, 255, 255, 0.7);
+            --clr-text-tertiary: rgba(255, 255, 255, 0.5);
+            --clr-accent: #e89b5b;
+            --clr-accent-bright: #ffb380;
+            
+            /* Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-bg-hover: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --glass-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.4);
+            
+            /* Layout */
+            --radius: 20px;
+            --radius-lg: 24px;
+            --max-width: 1200px;
+            --spacing-0: 20px;
+            --spacing-1: 40px;
+            --spacing-2: 80px;
+            --spacing-3: 120px;
+        }
+
+        /* Reset and Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fixed Tropical Background */
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--clr-text-primary);
+            background: var(--clr-bg-dark);
+            position: relative;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=85') center/cover no-repeat;
+            filter: blur(8px);
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--clr-overlay);
+            z-index: -1;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.4;
+            color: var(--clr-text-primary);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin: 0 0 var(--spacing-0) 0;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin: 0 0 var(--spacing-0) 0;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--clr-accent), var(--clr-accent-bright));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin: 2rem 0 1rem;
+            color: var(--clr-accent-bright);
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.5rem;
+            color: var(--clr-accent);
+        }
+
+        p {
+            margin: 0 0 var(--spacing-0) 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            border-radius: var(--radius);
+        }
+
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            color: var(--clr-text-secondary);
+        }
+
+        strong {
+            color: var(--clr-text-primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: var(--max-width);
+            margin: auto;
+            overflow: hidden;
+            padding: 0 var(--spacing-0);
+        }
+
+        /* Navigation - Glass Effect */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            padding: 1rem 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: var(--clr-text-primary);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            background: transparent;
+        }
+
+        nav a:hover {
+            background: rgba(232, 155, 91, 0.2);
+            color: var(--clr-accent-bright);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section - Glass Panel */
+        .hero {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--glass-shadow);
+            color: var(--clr-text-primary);
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            margin: 2rem auto;
+            max-width: var(--max-width);
+        }
+
+        .hero::before {
+            content: '🌴 🌺 🌊 ☀️ 🥥 💕';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            font-size: 3rem;
+            opacity: 0.15;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            color: var(--clr-text-primary);
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+            color: var(--clr-text-secondary);
+        }
+
+        .hero .dates {
+            font-size: 1.3rem;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Section Styling - Glass Panels */
+        section {
+            max-width: var(--max-width);
+            margin: 3rem auto;
+            padding: var(--spacing-2) var(--spacing-0);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        /* Day Cards - Glass Effect */
+        .day-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-left: 5px solid var(--clr-accent);
+            border: 1px solid var(--glass-border);
+            border-left: 5px solid var(--clr-accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: var(--radius);
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .day-card:hover {
+            transform: translateX(10px);
+            box-shadow: var(--glass-shadow-hover);
+            background: var(--glass-bg-hover);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-number {
+            background: linear-gradient(135deg, var(--clr-accent), var(--clr-accent-bright));
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(232, 155, 91, 0.4);
+        }
+
+        .day-title {
+            font-size: 1.5rem;
+            color: var(--clr-text-primary);
+            margin: 0;
+        }
+
+        .activity-type {
+            display: inline-block;
+            background: rgba(232, 155, 91, 0.3);
+            color: var(--clr-accent-bright);
+            border: 1px solid var(--clr-accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            font-family: 'Inter', sans-serif;
+            backdrop-filter: blur(10px);
+        }
+
+        .fixed-event {
+            background: rgba(232, 155, 91, 0.4);
+            border-color: var(--clr-accent-bright);
+        }
+
+        /* Restaurant Cards - Glass Effect */
+        .restaurant-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px) saturate(180%);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: var(--radius);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .restaurant-card:hover {
+            background: var(--glass-bg-hover);
+            box-shadow: var(--glass-shadow-hover);
+        }
+
+        .restaurant-card h4 {
+            color: var(--clr-accent-bright);
+            margin-top: 0;
+        }
+
+        .price-tag {
+            color: var(--clr-accent);
+            font-weight: bold;
+        }
+
+        /* Activity Cards - Glass Effect */
+        .activity-card {
+            background: rgba(232, 155, 91, 0.15);
+            backdrop-filter: blur(20px) saturate(180%);
+            color: var(--clr-text-primary);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: var(--radius);
+            border: 1px solid rgba(232, 155, 91, 0.3);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .activity-card:hover {
+            background: rgba(232, 155, 91, 0.25);
+            box-shadow: var(--glass-shadow-hover);
+        }
+
+        .activity-card h4 {
+            color: var(--clr-accent-bright);
+            margin-top: 0;
+        }
+
+        .activity-card ul, .activity-card li {
+            color: var(--clr-text-secondary);
+        }
+
+        /* Tips & Highlights - Glass Effect */
+        .tip-box {
+            background: rgba(232, 155, 91, 0.2);
+            backdrop-filter: blur(20px) saturate(180%);
+            color: var(--clr-text-primary);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+            border: 1px solid rgba(232, 155, 91, 0.4);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .tip-box strong {
+            font-size: 1.2rem;
+            color: var(--clr-accent-bright);
+        }
+
+        .tip-box li {
+            color: var(--clr-text-secondary);
+        }
+
+        .highlight {
+            background: rgba(232, 155, 91, 0.2);
+            backdrop-filter: blur(20px) saturate(180%);
+            color: var(--clr-text-primary);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 1rem 0;
+            font-weight: bold;
+            border: 1px solid rgba(232, 155, 91, 0.4);
+            box-shadow: var(--glass-shadow);
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px) saturate(180%);
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: var(--glass-bg-hover);
+        }
+
+        /* Footer - Glass Effect */
+        footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--glass-shadow);
+            color: var(--clr-text-primary);
+            text-align: center;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: var(--max-width);
+            font-size: 1.2rem;
+        }
+
+        footer h2 {
+            color: var(--clr-accent-bright);
+        }
+
+        footer h2::after {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            section {
+                margin: 2rem 1rem;
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .day-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Emoji styling */
+        .emoji {
+            font-size: 1.5em;
+            margin: 0 0.2em;
+        }
+
+        /* Grid layouts for special sections */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#overview">🌴 Overview</a></li>
+            <li><a href="#itinerary">📅 Itinerary</a></li>
+            <li><a href="#drive">🚗 The Drive</a></li>
+            <li><a href="#restaurants">🍽️ Restaurants</a></li>
+            <li><a href="#beaches">🏖️ Beaches</a></li>
+            <li><a href="#resort">🏨 Resort</a></li>
+            <li><a href="#tips">💡 Tips</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>🌴 Our Florida Keys Honeymoon 💕</h1>
+        <p class="subtitle">Jacksonville to Islamorada</p>
+        <div class="dates">
+            <strong>February 16-27, 2026</strong><br>
+            12 Days in Paradise
+        </div>
+    </div>
+
+    <!-- Overview Section -->
+    <section id="overview">
+        <h2>🌺 Trip Overview</h2>
+        <div class="highlight">
+            <p style="text-align: center; font-size: 1.2rem;">
+                A romantic honeymoon adventure from Jacksonville to the stunning Florida Keys!<br>
+                Staying at the beautiful <strong>Amara Cay Resort</strong> in Islamorada
+            </p>
+        </div>
+        
+        <div class="overview-grid">
+            <div class="activity-card">
+                <h4>🚗 The Journey</h4>
+                <p>420 miles of scenic Florida beauty<br>Jacksonville → Miami → Islamorada</p>
+            </div>
+            <div class="activity-card">
+                <h4>🏖️ The Destination</h4>
+                <p>Islamorada - "Sport Fishing Capital of the World"<br>Mile Markers 90-63</p>
+            </div>
+            <div class="activity-card">
+                <h4>🏨 Home Base</h4>
+                <p>Amara Cay Resort<br>Award-winning boutique wellness resort</p>
+            </div>
+        </div>
+
+        <h3>Why This Trip is Perfect 💕</h3>
+        <ul>
+            <li><strong>One of America's most scenic drives</strong> - The Overseas Highway crosses 42 bridges over turquoise waters</li>
+            <li><strong>Perfect weather</strong> - February temps in the 70s-80s with low humidity</li>
+            <li><strong>World-class seafood</strong> - Fresh catch, conch fritters, key lime pie</li>
+            <li><strong>Romantic beaches</strong> - Pristine sand, swaying palms, sunset views</li>
+            <li><strong>Adventure & relaxation</strong> - Snorkeling, fishing, or just hammock time</li>
+            <li><strong>Unforgettable experiences</strong> - Feed giant tarpon, seaplane to Dry Tortugas, sunset sails</li>
+        </ul>
+    </section>
+
+    <!-- Itinerary Section -->
+    <section id="itinerary">
+        <h2>📅 Your Day-by-Day Itinerary</h2>
+        
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">1</div>
+                <div>
+                    <h3 class="day-title">Sunday, February 16 - Drive Day 🚗</h3>
+                    <span class="activity-type">Travel</span>
+                </div>
+            </div>
+            <p><strong>The big adventure begins!</strong></p>
+            <ul>
+                <li><strong>6:30 AM:</strong> Depart Jacksonville (early start to avoid Miami traffic)</li>
+                <li><strong>11:00 AM:</strong> <span class="emoji">🍹</span> Alabama Jack's for legendary conch fritters & waterfront vibes</li>
+                <li><strong>1:00 PM:</strong> Lunch in Key Largo (Snook's Bayside or Mrs. Mac's Kitchen)</li>
+                <li><strong>2:30 PM:</strong> Quick photo stop at John Pennekamp Coral Reef State Park</li>
+                <li><strong>4:00 PM:</strong> Check in to Amara Cay Resort - we made it!</li>
+                <li><strong>6:00 PM:</strong> Sunset walk on the beach, hand in hand</li>
+                <li><strong>7:30 PM:</strong> Casual dinner at resort or nearby Island Grill</li>
+            </ul>
+            <div class="tip-box">
+                <strong>💡 Pro Tip:</strong> Take Card Sound Road for less traffic and better scenery. Fill up gas in Jacksonville and again before the Keys!
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">2</div>
+                <div>
+                    <h3 class="day-title">Monday, February 17 - Beach Bliss 🏖️</h3>
+                    <span class="activity-type">Open Day - Relaxation</span>
+                </div>
+            </div>
+            <p><strong>Suggested Activities:</strong></p>
+            <ul>
+                <li><strong>Morning:</strong> Anne's Beach - the best beach in Islamorada! Swim, walk the romantic boardwalk through mangroves, find tidal pools</li>
+                <li><strong>Lunch:</strong> Islamorada Shrimp Shack (casual & delicious)</li>
+                <li><strong>Afternoon:</strong> Resort pool time, hammock naps under palm trees</li>
+                <li><strong>Late Afternoon:</strong> Try the complimentary kayaks or paddleboards</li>
+                <li><strong>Sunset:</strong> Happy hour at Lorelei Cabana Bar (famous sunset celebration with live music!)</li>
+                <li><strong>Dinner:</strong> Stay at Lorelei for waterfront dining</li>
+                <li><strong>Evening:</strong> Beach stargazing - the Keys have minimal light pollution!</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">3</div>
+                <div>
+                    <h3 class="day-title">Tuesday, February 18 - Adventure Day 🤿</h3>
+                    <span class="activity-type">Open Day - Active</span>
+                </div>
+            </div>
+            <p><strong>Suggested Activities:</strong></p>
+            <ul>
+                <li><strong>Morning:</strong> Snorkeling tour at John Pennekamp (book ahead!) - see the underwater Christ of the Deep statue and vibrant coral reefs</li>
+                <li><strong>OR:</strong> Theater of the Sea - dolphin encounter & sea lion show</li>
+                <li><strong>Lunch:</strong> Fresh catch back in Islamorada</li>
+                <li><strong>Afternoon:</strong> <span class="emoji">🐟</span> Robbie's Marina - feed the GIANT tarpon! (bucket of fish for $5)</li>
+                <li><strong>Late Afternoon:</strong> Florida Keys Brewing Company - tropical beer tasting</li>
+                <li><strong>Evening:</strong> Freshen up at resort</li>
+                <li><strong>Dinner:</strong> Marker 88 - romantic upscale beachfront dining with live music (book ahead!)</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">4</div>
+                <div>
+                    <h3 class="day-title">Wednesday, February 19 - Fishing! 🎣</h3>
+                    <span class="activity-type fixed-event">Fixed Event</span>
+                </div>
+            </div>
+            <p><strong>⭐ Fishing Expedition in Islamorada ⭐</strong></p>
+            <ul>
+                <li><strong>Morning:</strong> Deep sea fishing charter from Islamorada (the "Sport Fishing Capital of the World"!)</li>
+                <li><strong>Options:</strong> Book through Bud N' Mary's Marina - half-day or full-day charters available</li>
+                <li><strong>Catch:</strong> Mahi-mahi, yellowtail snapper, grouper, maybe even sailfish!</li>
+                <li><strong>Lunch:</strong> If you catch fish, take it to Lazy Days Restaurant - they'll cook your catch for you!</li>
+                <li><strong>Afternoon:</strong> Rest and recover at resort (fishing is tiring!)</li>
+                <li><strong>Evening:</strong> Casual dinner, early to bed</li>
+            </ul>
+            <div class="tip-box">
+                <strong>🎣 Book Ahead:</strong> Reserve your fishing charter at least a week in advance. Bring sunscreen, sunglasses, and Dramamine if needed!
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">5</div>
+                <div>
+                    <h3 class="day-title">Thursday, February 20 - Culture & Chill 🎨</h3>
+                    <span class="activity-type">Open Day - Explore</span>
+                </div>
+            </div>
+            <p><strong>Suggested Activities:</strong></p>
+            <ul>
+                <li><strong>Morning:</strong> Leisurely breakfast at Bitton Bistro Cafe (French-inspired, local favorite)</li>
+                <li><strong>Mid-Morning:</strong> Morada Way Arts & Cultural District - art galleries, Rain Barrel Artisan Village</li>
+                <li><strong>Lunch:</strong> Island Grill (locals' waterfront favorite)</li>
+                <li><strong>Afternoon:</strong> History of Diving Museum (air-conditioned escape!) or explore sister resorts</li>
+                <li><strong>Late Afternoon:</strong> Pool and beach time at Amara Cay</li>
+                <li><strong>Sunset:</strong> Sunset cruise with champagne! (Book ahead - perfect for honeymooners)</li>
+                <li><strong>Dinner:</strong> Light meal at resort or room service after the cruise</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">6</div>
+                <div>
+                    <h3 class="day-title">Friday, February 21 - Island Hopping 🏝️</h3>
+                    <span class="activity-type">Open Day - Explore</span>
+                </div>
+            </div>
+            <p><strong>Suggested Activities:</strong></p>
+            <ul>
+                <li><strong>Option 1:</strong> Kayak to Indian Key Historic State Park - explore abandoned island ruins, snorkel</li>
+                <li><strong>Option 2:</strong> Visit Windley Key Fossil Reef Geological State Park - ancient coral formations</li>
+                <li><strong>Option 3:</strong> Beach day at Anne's Beach or Library Beach (local secret!)</li>
+                <li><strong>Lunch:</strong> Pack a picnic or grab takeout</li>
+                <li><strong>Afternoon:</strong> Continue exploring or return for pool time</li>
+                <li><strong>Evening:</strong> Dinner at Morada Bay Beach Café - toes in the sand, romantic palm tree setting</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">7</div>
+                <div>
+                    <h3 class="day-title">Saturday, February 22 - Dry Tortugas & Key West! ✈️</h3>
+                    <span class="activity-type fixed-event">Fixed Event</span>
+                </div>
+            </div>
+            <p><strong>⭐ Epic Adventure Day! ⭐</strong></p>
+            <ul>
+                <li><strong>Early Morning:</strong> Seaplane flight to Dry Tortugas National Park (book with Key West Seaplane Adventures or similar)</li>
+                <li><strong>Dry Tortugas:</strong> Explore Fort Jefferson, snorkel crystal-clear waters, pristine beaches - one of the most remote places in Florida!</li>
+                <li><strong>Afternoon:</strong> Return to Key West</li>
+                <li><strong>Key West Activities:</strong>
+                    <ul>
+                        <li><span class="emoji">📚</span> Hemingway House & Museum (meet the 6-toed cats!)</li>
+                        <li>Southernmost Point marker (photo op!)</li>
+                        <li>Mallory Square</li>
+                        <li>Duval Street shopping & exploring</li>
+                    </ul>
+                </li>
+                <li><strong>Dinner in Key West:</strong> Sunset at Mallory Square celebration, then dinner</li>
+                <li><strong>Evening:</strong> Drive back to Islamorada (1 hour 20 min) - or book a night in Key West if you prefer!</li>
+            </ul>
+            <div class="tip-box">
+                <strong>✈️ Must Book:</strong> Dry Tortugas seaplane tours book up FAST! Reserve as soon as possible. Full-day adventure - pack sunscreen, snorkel gear, and lunch!
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">8</div>
+                <div>
+                    <h3 class="day-title">Sunday, February 23 - Cabana Day! 🏖️</h3>
+                    <span class="activity-type fixed-event">Fixed Event</span>
+                </div>
+            </div>
+            <p><strong>⭐ Ultimate Relaxation at Amara Cay ⭐</strong></p>
+            <ul>
+                <li><strong>All Day:</strong> Reserve a beachside cabana at Amara Cay Resort</li>
+                <li><strong>Morning:</strong> Sleep in! Late breakfast in bed or poolside</li>
+                <li><strong>Activities:</strong>
+                    <ul>
+                        <li>Lounging in your private cabana</li>
+                        <li>Swimming in the infinity pool</li>
+                        <li>Beach time with complimentary loungers</li>
+                        <li>Couples massage (book spa services ahead!)</li>
+                        <li>Kayaking or paddleboarding</li>
+                        <li>Reading in the hammocks</li>
+                    </ul>
+                </li>
+                <li><strong>Meals:</strong> Pool bar lunch, poolside drinks, resort dining</li>
+                <li><strong>Evening:</strong> Watch sunset from your cabana, romantic dinner at resort</li>
+            </ul>
+            <div class="tip-box">
+                <strong>🏖️ Book Your Cabana:</strong> Reserve your beachside cabana when you check in - they can fill up on weekends!
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">9</div>
+                <div>
+                    <h3 class="day-title">Monday, February 24 - Free & Easy 😌</h3>
+                    <span class="activity-type">Open Day - Your Choice</span>
+                </div>
+            </div>
+            <p><strong>Suggested Activities (pick what sounds best!):</strong></p>
+            <ul>
+                <li><strong>Option 1:</strong> Another snorkeling or dive trip - explore more reefs</li>
+                <li><strong>Option 2:</strong> Visit Lignumvitae Key Botanical State Park - virgin tropical forest (book ranger tour ahead)</li>
+                <li><strong>Option 3:</strong> Spa day at resort - couples treatments, relaxation</li>
+                <li><strong>Option 4:</strong> Explore all three sister resorts - free shuttle, different pools & restaurants</li>
+                <li><strong>Option 5:</strong> Shopping day - Morada Way, local boutiques, souvenirs</li>
+                <li><strong>Lunch:</strong> Try somewhere new - maybe Snappers or Key Largo Fisheries</li>
+                <li><strong>Evening:</strong> Sunset at your favorite spot from the week, special dinner</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">10</div>
+                <div>
+                    <h3 class="day-title">Tuesday, February 25 - Catboat Tour! ⛵</h3>
+                    <span class="activity-type fixed-event">Fixed Event</span>
+                </div>
+            </div>
+            <p><strong>⭐ Sailing Adventure in Islamorada ⭐</strong></p>
+            <ul>
+                <li><strong>Catboat Sailing Tour:</strong> Traditional sailing experience (book ahead with local charter)</li>
+                <li><strong>Options:</strong> Morning sail, sunset cruise, or full-day adventure</li>
+                <li><strong>What to Expect:</strong> Relaxed sailing, beautiful views, possibly see dolphins, manatees, or sea turtles</li>
+                <li><strong>Bring:</strong> Sunscreen, sunglasses, camera, light jacket</li>
+                <li><strong>After Sailing:</strong> Late lunch at waterfront restaurant</li>
+                <li><strong>Afternoon:</strong> Last pool/beach time at resort</li>
+                <li><strong>Evening:</strong> Final romantic dinner - splurge at Pierre's or return to your favorite from the week</li>
+            </ul>
+            <div class="tip-box">
+                <strong>⛵ Sailing Tip:</strong> Sunset catboat tours are incredibly romantic! Book your preferred time slot in advance.
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">11</div>
+                <div>
+                    <h3 class="day-title">Wednesday, February 26 - Last Full Day 🌅</h3>
+                    <span class="activity-type">Open Day - Savor It</span>
+                </div>
+            </div>
+            <p><strong>Make it count! Last day in paradise:</strong></p>
+            <ul>
+                <li><strong>Morning:</strong> Early sunrise walk on the beach - soak it all in</li>
+                <li><strong>Breakfast:</strong> Special breakfast at your favorite spot</li>
+                <li><strong>Morning Activity:</strong> Any "must-do" you haven't done yet, or revisit a favorite</li>
+                <li><strong>Lunch:</strong> Return to your favorite restaurant, or try that one place you missed</li>
+                <li><strong>Afternoon:</strong> 
+                    <ul>
+                        <li>Pack (sadly!)</li>
+                        <li>Last swim in the pool/ocean</li>
+                        <li>Final hammock nap</li>
+                        <li>Take lots of photos</li>
+                    </ul>
+                </li>
+                <li><strong>Sunset:</strong> Anne's Beach boardwalk - watch your last Keys sunset together</li>
+                <li><strong>Dinner:</strong> Celebratory final dinner - somewhere special and meaningful from your trip</li>
+                <li><strong>Evening:</strong> Moonlit beach walk, toast to an amazing honeymoon</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">12</div>
+                <div>
+                    <h3 class="day-title">Thursday, February 27 - Heading Home 🚗</h3>
+                    <span class="activity-type">Departure</span>
+                </div>
+            </div>
+            <ul>
+                <li><strong>7:00 AM:</strong> Early breakfast</li>
+                <li><strong>8:00 AM:</strong> Check out (say goodbye to paradise)</li>
+                <li><strong>8:30 AM:</strong> Begin drive back to Jacksonville</li>
+                <li><strong>10:30 AM:</strong> Stop in Key Largo for coffee and key lime pie to-go (Mrs. Mac's!)</li>
+                <li><strong>12:00 PM:</strong> Lunch stop in Miami area or Homestead</li>
+                <li><strong>Afternoon:</strong> Continue north on I-95</li>
+                <li><strong>6:00 PM:</strong> Arrive home with amazing memories and a suntan! 💕</li>
+            </ul>
+            <div class="tip-box">
+                <strong>🏠 Coming Home:</strong> Buy key lime pie, hot sauce, and souvenirs before leaving the Keys. Start planning your return trip!
+            </div>
+        </div>
+    </section>
+
+    <!-- The Drive Section -->
+    <section id="drive">
+        <h2>🚗 The Drive: Jacksonville to Islamorada</h2>
+        
+        <div class="highlight">
+            <p style="font-size: 1.1rem;">
+                <strong>Total Distance:</strong> ~420 miles<br>
+                <strong>Drive Time:</strong> 6-7 hours (without stops)<br>
+                <strong>Best Route:</strong> I-95 South → Overseas Highway (US Route 1)
+            </p>
+        </div>
+
+        <h3>🗺️ Route Details</h3>
+        <ol>
+            <li><strong>Jacksonville to Miami (344 miles, ~4.5-5 hours)</strong>
+                <ul>
+                    <li>Take I-95 South (most direct) or Florida's Turnpike (faster, has tolls)</li>
+                    <li>Pass through: St. Augustine, Daytona Beach, West Palm Beach, Fort Lauderdale</li>
+                </ul>
+            </li>
+            <li><strong>Miami to Islamorada (76 miles, ~1.5 hours)</strong>
+                <ul>
+                    <li>Continue south through Homestead/Florida City</li>
+                    <li>Enter the <strong>Overseas Highway (US Route 1)</strong> - one of America's most scenic drives!</li>
+                    <li>Cross 42 bridges over turquoise waters</li>
+                    <li>Islamorada is at Mile Marker 90-63</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>⭐ Pro Tips for the Drive</h3>
+        
+        <div class="restaurant-card">
+            <h4>🌅 Best Time to Drive</h4>
+            <ul>
+                <li><strong>Start early morning</strong> (6-7 AM from Jacksonville) to avoid Miami traffic</li>
+                <li>Avoid Friday afternoons and Sunday evenings (peak traffic)</li>
+                <li>Weekday drives are generally smoother</li>
+                <li>Sunrise drive through Miami can be spectacular!</li>
+            </ul>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>🌊 Scenic Route Upgrade: Card Sound Road</h4>
+            <p>Once you reach Homestead/Florida City, take <strong>Card Sound Road</strong> instead of continuing on US-1. Adds only 15 minutes but offers:</p>
+            <ul>
+                <li>Less traffic</li>
+                <li>Beautiful water views</li>
+                <li><strong>Alabama Jack's</strong> - legendary waterside bar and restaurant!</li>
+                <li>Access to Dagny Johnson State Park (beautiful tropical trails)</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <strong>⛽ Fuel Up!</strong> Fill up in Jacksonville and again before entering the Keys. Gas prices increase as you go south. Last affordable gas: Homestead/Florida City area.
+        </div>
+
+        <div class="tip-box">
+            <strong>📍 Mile Markers:</strong> In the Keys, addresses use Mile Markers (MM). They count DOWN from 127 (Florida City) to 0 (Key West). Amara Cay Resort is around MM 80. This is how locals give directions!
+        </div>
+
+        <h3>🛑 Must-Stop: Alabama Jack's</h3>
+        <div class="activity-card">
+            <h4>🍹 Alabama Jack's - Since 1947</h4>
+            <p><strong>Location:</strong> Card Sound Road, just before Key Largo (before MM 106)</p>
+            <p><strong>Why Stop:</strong></p>
+            <ul>
+                <li>Authentic "Old Florida" atmosphere - built on stilts over the water</li>
+                <li><strong>Fresh conch fritters</strong> (legendary!)</li>
+                <li>Cold beer and tropical drinks</li>
+                <li>Live music on weekends</li>
+                <li>Watch boats, manatees, and tarpon in the water</li>
+                <li>Perfect honeymoon photo spot!</li>
+            </ul>
+            <p><strong>What to Order:</strong> Conch fritters, fish sandwich, cold beer</p>
+            <p><strong>Vibe:</strong> Super casual, cash-friendly, pure Keys atmosphere</p>
+        </div>
+
+        <h3>🍽️ Other Stop Options in Key Largo</h3>
+        
+        <div class="restaurant-card">
+            <h4>Snook's Bayside Restaurant (MM 99.5)</h4>
+            <ul>
+                <li>Open-air tiki bar overlooking the ocean</li>
+                <li>Try: Yellowtail Bayside, Bacon Wrapped Scallops</li>
+                <li>Daily live music</li>
+            </ul>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>Mrs. Mac's Kitchen (MM 99.4)</h4>
+            <ul>
+                <li>Local favorite since 1976</li>
+                <li>Kitschy décor covered in license plates</li>
+                <li><strong>MUST TRY: Key lime pie!</strong></li>
+                <li>Very casual, affordable</li>
+            </ul>
+        </div>
+
+        <h3>🏖️ Quick Activity: John Pennekamp Coral Reef State Park (MM 102.5)</h3>
+        <ul>
+            <li>First underwater preserve in the U.S.</li>
+            <li>America's ONLY living coral reef</li>
+            <li>Snorkeling tours, glass-bottom boat tours</li>
+            <li>Beach, mangrove trails, visitor center</li>
+            <li><strong>Highlight:</strong> Christ of the Deep underwater statue</li>
+            <li><strong>Time needed:</strong> 2-4 hours for full experience (or just quick photo stop)</li>
+        </ul>
+    </section>
+
+    <!-- Restaurants Section -->
+    <section id="restaurants">
+        <h2>🍽️ Best Restaurants in Islamorada</h2>
+
+        <h3 style="color: var(--clr-accent-bright);">💕 Fine Dining & Romantic</h3>
+
+        <div class="restaurant-card">
+            <h4>⭐ Marker 88 (MM 88, Bayside)</h4>
+            <p><strong>Perfect for:</strong> Romantic sunset dinner</p>
+            <ul>
+                <li>Upscale beachfront dining with live music</li>
+                <li>Picturesque waterfront location</li>
+                <li>Fresh local seafood with creative preparations</li>
+                <li>Reservations recommended: <strong>(305) 852-9315</strong></li>
+            </ul>
+            <p class="price-tag">$$$ | Book 2-3 days ahead</p>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>⭐ Morada Bay Beach Café (MM 81.6, Bayside)</h4>
+            <p><strong>Perfect for:</strong> Toes-in-the-sand dining</p>
+            <ul>
+                <li>Dine under swaying palms with beach views</li>
+                <li>Incredible sunset location</li>
+                <li>Fresh seafood, Caribbean-inspired dishes</li>
+                <li>Used as filming location for "Bloodline"</li>
+                <li>Reservations: <strong>(305) 664-0604</strong></li>
+            </ul>
+            <p class="price-tag">$$$ | Romantic & relaxed</p>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>Pierre's at Morada Bay (Same location)</h4>
+            <ul>
+                <li>Upscale fine dining option</li>
+                <li>Chef's table experiences</li>
+                <li>Excellent wine list</li>
+                <li>Special occasion restaurant</li>
+            </ul>
+            <p class="price-tag">$$$$ | Book a week ahead</p>
+        </div>
+
+        <h3 style="color: var(--clr-accent);">🌊 Casual Waterfront Favorites</h3>
+
+        <div class="restaurant-card">
+            <h4>Lazy Days Restaurant</h4>
+            <p><strong>Perfect for:</strong> Relaxed oceanfront dining</p>
+            <ul>
+                <li><strong>"Cook your catch"</strong> option if you go fishing!</li>
+                <li>Fresh seafood, pastas, steaks</li>
+                <li>Beautiful water views + live music</li>
+                <li>Popular with locals</li>
+                <li>Phone: <strong>(305) 664-5256</strong></li>
+            </ul>
+            <p class="price-tag">$$ | Reasonable prices</p>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>Lorelei Restaurant & Cabana Bar (MM 82, Bayside)</h4>
+            <p><strong>"The Pulse of Islamorada"</strong></p>
+            <ul>
+                <li>FAMOUS sunset celebration</li>
+                <li>Live music 7 nights a week</li>
+                <li>Waterfront seating on beach and deck</li>
+                <li>Look for the giant mermaid!</li>
+                <li>Happy hour 4-6 PM daily</li>
+                <li>Phone: <strong>(305) 664-2692</strong></li>
+            </ul>
+            <p class="price-tag">$$ | Very casual, laid-back vibe</p>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>Island Grill (MM 85.5)</h4>
+            <ul>
+                <li>Casual, locals' favorite</li>
+                <li>Waterfront tiki bar atmosphere</li>
+                <li>Fresh seafood + live entertainment</li>
+                <li>Not as touristy - where locals actually eat!</li>
+            </ul>
+            <p class="price-tag">$$ | Great value</p>
+        </div>
+
+        <h3 style="color: var(--clr-accent);">☕ Breakfast & Brunch</h3>
+
+        <div class="restaurant-card">
+            <h4>Bitton Bistro Cafe (MM 82)</h4>
+            <ul>
+                <li>French-inspired café</li>
+                <li>Breakfast and lunch</li>
+                <li>Fresh, delicious</li>
+                <li>Locals' secret</li>
+            </ul>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>Mangrove Mike's Cafe (MM 81.8)</h4>
+            <ul>
+                <li>Breakfast favorite</li>
+                <li>Great coffee</li>
+                <li>Local hangout</li>
+            </ul>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>Midway Cafe & Coffee Bar (MM 80.8)</h4>
+            <ul>
+                <li>Great coffee and breakfast</li>
+                <li>Casual, quick</li>
+                <li>Good for early starts</li>
+            </ul>
+        </div>
+
+        <h3>🥥 What to Try - Local Favorites</h3>
+        <ul>
+            <li><strong>Local fish:</strong> Yellowtail snapper, mahi-mahi, hogfish, grouper</li>
+            <li><strong>Conch fritters</strong> - MUST TRY everywhere!</li>
+            <li><strong>Stone crab</strong> (in season Oct-May - you're in luck!)</li>
+            <li><strong>Key lime pie</strong> - try multiple versions and compare</li>
+            <li><strong>Fresh catch of the day</strong> - always ask what's fresh</li>
+        </ul>
+
+        <div class="tip-box">
+            <strong>🍽️ Ordering Like a Local:</strong> Always ask "What's fresh today?" Try different preparation styles: grilled, blackened, fried, or "Oscar style". Happy hours are usually 4-6 PM with great deals!
+        </div>
+    </section>
+
+    <!-- Beaches & Activities Section -->
+    <section id="beaches">
+        <h2>🏖️ Beaches & Activities</h2>
+
+        <h3>🌊 Best Beaches in Islamorada</h3>
+
+        <div class="activity-card">
+            <h4>⭐ Anne's Beach (MM 73.5, Oceanside) - BEST!</h4>
+            <p><strong>Voted "Best Hidden Beach of South Florida"</strong></p>
+            <ul>
+                <li>Natural sandy beach (rare in the Keys!)</li>
+                <li>Romantic boardwalk winding through mangroves</li>
+                <li>Calm, shallow, lagoon-like water - perfect for wading</li>
+                <li>Tidal pools to explore</li>
+                <li>Beautiful sunset views</li>
+                <li><strong>FREE admission</strong></li>
+                <li>Picnic tables and pavilions</li>
+                <li>Not crowded, peaceful</li>
+            </ul>
+            <p><strong>Perfect for:</strong> Romantic sunset strolls, swimming, relaxing</p>
+        </div>
+
+        <div class="activity-card">
+            <h4>Library Beach (Islamorada Library, MM 81.5)</h4>
+            <ul>
+                <li>Small, LOCAL beach</li>
+                <li>Free</li>
+                <li>Quiet, almost secret</li>
+                <li>Great for morning swim</li>
+            </ul>
+        </div>
+
+        <div class="activity-card">
+            <h4>Sunset Cove Beach</h4>
+            <ul>
+                <li>Western side of island</li>
+                <li>Famous for breathtaking sunset views</li>
+                <li>Great for evening visits</li>
+            </ul>
+        </div>
+
+        <h3>🎣 Must-Do Activities</h3>
+
+        <div class="activity-card">
+            <h4>⭐ Robbie's Marina (MM 77.5) - DON'T MISS!</h4>
+            <p><strong>Feed the GIANT tarpon fish!</strong></p>
+            <ul>
+                <li>Bucket of fish for $5</li>
+                <li>These prehistoric-looking fish are HUGE</li>
+                <li>Unique, fun experience</li>
+                <li>Shopping market with local souvenirs</li>
+                <li>Hungry Tarpon restaurant on-site</li>
+                <li>Parasailing, jet ski rentals, kayak rentals</li>
+                <li>Great for photos!</li>
+                <li><strong>Legend:</strong> Owner rescued injured tarpon "Scarface" who returned with friends</li>
+            </ul>
+            <p>Phone: <strong>(305) 664-8070</strong></p>
+        </div>
+
+        <div class="activity-card">
+            <h4>Theater of the Sea (MM 84.5)</h4>
+            <ul>
+                <li>Marine park since 1946</li>
+                <li>Dolphin encounters and swims</li>
+                <li>Sea lion shows</li>
+                <li>Stingray encounters</li>
+                <li>Parrot shows + tropical gardens</li>
+                <li>Perfect for couples who love marine life</li>
+                <li><strong>Book in advance!</strong> Phone: <strong>(305) 664-2431</strong></li>
+            </ul>
+        </div>
+
+        <h3>🤿 Water Activities</h3>
+
+        <div class="restaurant-card">
+            <h4>Snorkeling & Diving</h4>
+            <ul>
+                <li>Islamorada has some of the best reef diving in the U.S.</li>
+                <li>Popular sites: Alligator Reef, Davis Reef</li>
+                <li>Charter boats available</li>
+                <li>Book at John Pennekamp: <strong>(305) 451-6300</strong></li>
+            </ul>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>Fishing Charters</h4>
+            <ul>
+                <li>"Sport Fishing Capital of the World"</li>
+                <li>Deep sea, backcountry, flats fishing</li>
+                <li>Half-day and full-day charters</li>
+                <li>Book through Bud N' Mary's Marina</li>
+            </ul>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>Sunset Cruises</h4>
+            <ul>
+                <li>Romantic sunset sails</li>
+                <li>Catamaran cruises</li>
+                <li>Private charters available</li>
+                <li>Champagne sunset cruises perfect for honeymooners!</li>
+            </ul>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>Kayaking</h4>
+            <ul>
+                <li>Mangrove tunnels</li>
+                <li>Backcountry eco-tours</li>
+                <li>Paddle to hidden beaches</li>
+                <li>Florida Bay explorations</li>
+                <li><strong>FREE at Amara Cay Resort!</strong></li>
+            </ul>
+        </div>
+
+        <h3>🍺 Unique Experiences</h3>
+
+        <div class="restaurant-card">
+            <h4>Florida Keys Brewing Company (MM 81.6)</h4>
+            <ul>
+                <li>First brewery in the Upper Keys</li>
+                <li>Tropical beer garden</li>
+                <li>Flight tastings</li>
+                <li>Try: Hibiscus Kolsch, tropical-infused beers</li>
+                <li>Great for afternoon hangout</li>
+            </ul>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>History of Diving Museum (MM 83)</h4>
+            <ul>
+                <li>Unique collection of diving equipment</li>
+                <li>Fascinating for history buffs</li>
+                <li>Indoor activity for hot afternoons</li>
+                <li>World-class collection nobody knows about!</li>
+            </ul>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>Rain Barrel Artisan Village (MM 86.7)</h4>
+            <ul>
+                <li>Artists' cooperative</li>
+                <li>Local art, pottery, jewelry</li>
+                <li>Quirky, charming</li>
+                <li>Not touristy - great for unique souvenirs</li>
+            </ul>
+        </div>
+
+        <h3>🌅 Best Sunset Spots</h3>
+        <ol>
+            <li><strong>Lorelei Cabana Bar</strong> - Sunset celebration with live music</li>
+            <li><strong>Morada Bay Beach Café</strong> - Toes in sand</li>
+            <li><strong>Anne's Beach</strong> - Quiet and romantic</li>
+            <li><strong>Marker 88</strong> - Upscale dining with sunset views</li>
+            <li><strong>Your resort deck!</strong> - Private and intimate</li>
+        </ol>
+    </section>
+
+    <!-- Resort Section -->
+    <section id="resort">
+        <h2>🏨 Amara Cay Resort - Your Home Base</h2>
+
+        <div class="highlight">
+            <p style="text-align: center; font-size: 1.2rem;">
+                <strong>MM 80, Bayside</strong><br>
+                80001 Overseas Highway, Islamorada, FL 33036<br>
+                Phone: <strong>(305) 664-0073</strong>
+            </p>
+        </div>
+
+        <h3>✨ What Makes It Special</h3>
+        <p style="font-size: 1.1rem; text-align: center; color: var(--clr-accent-bright);">
+            <strong>Award-winning boutique wellness resort - one of the premier properties in Islamorada!</strong>
+        </p>
+
+        <div class="overview-grid">
+            <div class="activity-card">
+                <h4>🌊 Beachfront Location</h4>
+                <ul>
+                    <li>Direct access to Florida Bay</li>
+                    <li>Stunning ocean views from rooms</li>
+                    <li>Sandy shoreline with hammocks</li>
+                    <li>Palm trees swaying in the breeze</li>
+                    <li>Shimmering oceanfront pool</li>
+                </ul>
+            </div>
+
+            <div class="activity-card">
+                <h4>🛏️ Accommodations</h4>
+                <ul>
+                    <li>Coastal chic style</li>
+                    <li>Modern, elegant rooms and suites</li>
+                    <li>Private balconies or lanais</li>
+                    <li>Many rooms with ocean views</li>
+                    <li>Sophisticated island décor</li>
+                </ul>
+            </div>
+
+            <div class="activity-card">
+                <h4>🏊 Amenities</h4>
+                <ul>
+                    <li>Oceanfront infinity pool</li>
+                    <li>Beachside hammocks (perfect for honeymoon naps!)</li>
+                    <li>Pool bar</li>
+                    <li>Beach with lounge chairs and cabanas</li>
+                    <li><strong>Complimentary kayaks and paddleboards</strong></li>
+                    <li>Fitness center</li>
+                    <li>Spa services available</li>
+                    <li>Free WiFi</li>
+                </ul>
+            </div>
+
+            <div class="activity-card">
+                <h4>🍽️ On-Site Dining</h4>
+                <ul>
+                    <li>Multiple restaurant options</li>
+                    <li>Poolside bar</li>
+                    <li>Beachfront dining available</li>
+                    <li>Room service</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <h4 style="color: var(--clr-accent-bright); margin-top: 0;">🎁 Resort Collection Perks - AMAZING!</h4>
+            <p>Access to <strong>THREE sister resorts</strong> in Islamorada:</p>
+            <ul>
+                <li>La Siesta Resort & Villas</li>
+                <li>Three Waters Resort & Marina</li>
+            </ul>
+            <p><strong>FREE shuttle service between properties</strong></p>
+            <p>Use all restaurants, pools, and amenities at all three - essentially triples your options!</p>
+        </div>
+
+        <h3>💕 Perfect for Honeymooners</h3>
+        <ul style="font-size: 1.1rem;">
+            <li>✅ Romantic beachfront setting</li>
+            <li>✅ Hammocks for two under palm trees</li>
+            <li>✅ Sunset views from your room</li>
+            <li>✅ Water activities included</li>
+            <li>✅ Multiple dining options</li>
+            <li>✅ Peaceful, tranquil atmosphere</li>
+            <li>✅ Walking distance to shops and restaurants</li>
+            <li>✅ Wedding venue (they know romance!)</li>
+        </ul>
+
+        <h3>💡 Insider Tips for Your Stay</h3>
+        <div class="restaurant-card">
+            <ol>
+                <li><strong>Request an oceanfront room</strong> with a balcony for sunrise coffee and sunset cocktails</li>
+                <li><strong>Use the free kayaks</strong> to explore the bay at sunrise or sunset</li>
+                <li><strong>Visit all three sister properties</strong> - try different restaurants and pools</li>
+                <li><strong>Bring reef-safe sunscreen</strong> (see Practical Tips below)</li>
+                <li><strong>Book any spa services in advance</strong></li>
+                <li><strong>Ask about honeymoon packages or upgrades</strong> at check-in</li>
+                <li><strong>The beach hammocks</strong> are perfect for afternoon reading and naps</li>
+                <li><strong>Early morning is magical</strong> - watch the sunrise with coffee from your balcony</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section id="tips">
+        <h2>💡 Practical Tips & Essentials</h2>
+
+        <h3>🎒 What to Pack - Honeymoon Edition</h3>
+
+        <div class="tip-box">
+            <h4 style="color: var(--clr-accent-bright); margin-top: 0;">✅ REEF-SAFE SUNSCREEN (CRITICAL!)</h4>
+            <p><strong>Regular sunscreen kills coral reefs</strong></p>
+            <ul>
+                <li>Look for: zinc oxide or titanium dioxide based</li>
+                <li>NO oxybenzone or octinoxate</li>
+                <li>Brands: Thinksport, Sun Bum Mineral, Kokua, Supergoop Unseen</li>
+                <li><strong>Hard to find in Keys - BRING FROM HOME!</strong></li>
+                <li>Apply 15 minutes before sun exposure</li>
+            </ul>
+        </div>
+
+        <h4>☀️ Sun Protection</h4>
+        <ul>
+            <li>Wide-brim hat (for her)</li>
+            <li>Baseball cap (for him)</li>
+            <li>Sunglasses (polarized for water)</li>
+            <li>Lightweight long-sleeve swim shirts (UPF protection)</li>
+            <li>Lip balm with SPF</li>
+        </ul>
+
+        <h4>🏖️ Beach & Water</h4>
+        <ul>
+            <li>Swimsuits (bring 2-3 each - they don't dry fast in humidity)</li>
+            <li>Waterproof phone case</li>
+            <li>Dry bag for valuables</li>
+            <li>Snorkel gear (optional - can rent, but nice to have your own)</li>
+            <li>Water shoes (rocky areas, boat trips)</li>
+        </ul>
+
+        <h4>👗 Clothing</h4>
+        <ul>
+            <li>Casual, lightweight clothes</li>
+            <li>Sundresses, shorts, t-shirts, tank tops</li>
+            <li>ONE nice outfit for upscale dinner (resort casual)</li>
+            <li>Light sweater or cover-up (air conditioning!)</li>
+            <li>Flip-flops, sandals</li>
+            <li>Comfortable walking shoes</li>
+        </ul>
+
+        <h4>📱 Miscellaneous</h4>
+        <ul>
+            <li>Camera (not just phone!)</li>
+            <li>Portable charger</li>
+            <li>Reusable water bottles</li>
+            <li>Bug spray (mosquitoes at dusk)</li>
+            <li>After-sun lotion/aloe</li>
+            <li>Dramamine (if prone to seasickness)</li>
+            <li>Small first aid kit</li>
+            <li>Cash (some places cash-only)</li>
+            <li>Marriage license/certificate (newlyweds!)</li>
+        </ul>
+
+        <h3>📞 Reservations Needed</h3>
+
+        <div class="restaurant-card">
+            <h4>🍽️ Restaurants</h4>
+            <ul>
+                <li><strong>Marker 88:</strong> Call 2-3 days ahead - (305) 852-9315</li>
+                <li><strong>Morada Bay:</strong> Call 2-3 days ahead - (305) 664-0604</li>
+                <li><strong>Pierre's:</strong> At least a week ahead - (305) 664-0604</li>
+                <li>Most others: Day-of or walk-in okay, but call to be safe</li>
+            </ul>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>🎣 Activities - BOOK THESE AHEAD!</h4>
+            <ul>
+                <li><strong>Dry Tortugas Seaplane:</strong> Book ASAP - fills up fast!</li>
+                <li><strong>Fishing Charters:</strong> Book a week ahead if possible</li>
+                <li><strong>Theater of the Sea:</strong> Book online 3-5 days ahead - (305) 664-2431</li>
+                <li><strong>Snorkeling tours (John Pennekamp):</strong> Book 2-3 days ahead - (305) 451-6300</li>
+                <li><strong>Sunset cruises:</strong> Book 2-3 days ahead</li>
+                <li><strong>Catboat tour:</strong> Book 2-3 days ahead</li>
+            </ul>
+        </div>
+
+        <div class="restaurant-card">
+            <h4>🏨 Resort</h4>
+            <ul>
+                <li><strong>Spa services:</strong> Book upon arrival</li>
+                <li><strong>Oceanfront room:</strong> Request when booking hotel</li>
+                <li><strong>Beach cabana (Feb 23):</strong> Reserve when you check in</li>
+            </ul>
+        </div>
+
+        <h3>💰 Money Matters</h3>
+
+        <h4>Budget Expectations:</h4>
+        <ul>
+            <li><strong>Breakfast:</strong> $10-20 per person</li>
+            <li><strong>Lunch:</strong> $15-30 per person</li>
+            <li><strong>Casual dinner:</strong> $25-50 per person</li>
+            <li><strong>Upscale dinner:</strong> $50-100+ per person</li>
+            <li><strong>Drinks:</strong> $8-15 each</li>
+        </ul>
+
+        <h4>Tips:</h4>
+        <ul>
+            <li>Restaurants: 18-20%</li>
+            <li>Bartenders: $1-2 per drink</li>
+            <li>Guides (fishing, tours): 15-20%</li>
+            <li>Housekeeping: $5-10 per day</li>
+        </ul>
+
+        <div class="tip-box">
+            <strong>💵 Cash:</strong> Bring $200-300 in small bills. Some places are cash-only (Alabama Jack's, parking). ATMs available but fees apply.
+        </div>
+
+        <h3>🌤️ February Weather</h3>
+        <ul>
+            <li><strong>Daytime:</strong> 75-82°F</li>
+            <li><strong>Nighttime:</strong> 65-72°F</li>
+            <li><strong>Water temp:</strong> 72-75°F</li>
+            <li><strong>Rain:</strong> Low chance</li>
+            <li><strong>Perfect honeymoon weather!</strong></li>
+        </ul>
+
+        <h3>🚗 Driving in the Keys - Important Notes</h3>
+        <ul>
+            <li><strong>US-1 is mostly 2 lanes</strong> (one each direction)</li>
+            <li><strong>Speed limits:</strong> 35-55 mph (enforced!)</li>
+            <li><strong>Use turnouts</strong> to let faster traffic pass</li>
+            <li><strong>Watch for Mile Markers</strong> - that's how addresses work</li>
+            <li><strong>Wildlife:</strong> Iguanas, Key deer - drive carefully!</li>
+            <li><strong>NO passing zones</strong> - be patient</li>
+        </ul>
+
+        <h3>💕 Honeymoon-Specific Tips</h3>
+
+        <div class="highlight">
+            <h4 style="margin-top: 0; color: var(--clr-accent-bright);">Making It Extra Special:</h4>
+            <ol style="font-size: 1.05rem;">
+                <li><strong>Tell everyone it's your honeymoon!</strong> Restaurants often give champagne or dessert. Resort may upgrade or add touches.</li>
+                <li><strong>Sunset dinner reservations:</strong> Ask for "best sunset table" when booking. Arrive 15 minutes early.</li>
+                <li><strong>Private moments:</strong> Early morning beach walks, resort hammocks during afternoon siesta, stargazing on beach after dark.</li>
+                <li><strong>Capture memories:</strong> Ask servers to take couple photos. Bring selfie stick or tripod. GoPro for water activities.</li>
+                <li><strong>Romantic touches:</strong> Champagne for room (buy in Homestead, cheaper). Share entrees to try more dishes. Hand-in-hand beach walks.</li>
+            </ol>
+        </div>
+
+        <h3>🆘 Emergency Contacts</h3>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <strong>Emergency:</strong> 911
+            </div>
+            <div class="contact-card">
+                <strong>Mariners Hospital (Islamorada/Key Largo):</strong><br>(305) 852-4418
+            </div>
+            <div class="contact-card">
+                <strong>Fishermen's Hospital (Marathon):</strong><br>(305) 743-5533
+            </div>
+            <div class="contact-card">
+                <strong>Coast Guard:</strong><br>Channel 16 or 911
+            </div>
+        </div>
+
+        <h3>✅ Quick Reference Checklist</h3>
+        <div class="restaurant-card">
+            <ul>
+                <li>✅ Reef-safe sunscreen (bought and packed!)</li>
+                <li>✅ Hotel reservations confirmed</li>
+                <li>✅ Restaurant reservations made</li>
+                <li>✅ Activity bookings confirmed (Dry Tortugas, fishing, catboat, etc.)</li>
+                <li>✅ Offline maps downloaded</li>
+                <li>✅ Camera batteries charged</li>
+                <li>✅ Cash withdrawn</li>
+                <li>✅ Honeymoon outfits packed</li>
+                <li>✅ Sunglasses and hats packed</li>
+                <li>✅ Waterproof phone case</li>
+                <li>✅ Music playlist for drive</li>
+                <li>✅ Marriage certificate (for honeymoon perks!)</li>
+                <li>✅ Sense of adventure and romance packed! ✨</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>🌴 CONGRATULATIONS ON YOUR MARRIAGE! 💕</h2>
+        <p style="font-size: 1.2rem; margin: 1rem 0;">
+            You're about to experience one of the most beautiful road trips in America,<br>
+            staying at a gorgeous resort in paradise, eating incredible food,<br>
+            and making memories that will last a lifetime.
+        </p>
+        <p style="font-size: 1.1rem;">
+            The Florida Keys are magical, Islamorada is romantic,<br>
+            and Amara Cay Resort is the perfect home base.
+        </p>
+        <p style="font-size: 1.3rem; margin-top: 2rem;">
+            <strong>Drive safely, eat well, relax often, and soak up every moment of your honeymoon!</strong>
+        </p>
+        <p style="font-size: 2rem; margin-top: 1rem;">
+            🌺 🌊 ☀️ 🥂 💕
+        </p>
+        <p style="font-size: 1rem; margin-top: 2rem; opacity: 0.8;">
+            Have an absolutely wonderful honeymoon! 🌅
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

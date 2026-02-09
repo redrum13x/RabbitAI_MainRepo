@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Honeymoon Bliss – Luxury Honeymoon Planning</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* CSS Variables */
+:root {
+    --clr-bg: #fafafa;
+    --clr-bg-alt: #fff;
+    --clr-text: #25242e;
+    --clr-text-light: #6c6c77;
+    --clr-accent: #e89b5b; /* subtle gold */
+    --clr-primary: #3e3b3a; /* dark neutral */
+    --shadow-light: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-medium: 0 6px 30px rgba(0,0,0,0.1);
+    --radius: 12px;
+    --max-width: 1200px;
+    --spacing-0: 20px;
+    --spacing-1: 40px;
+    --spacing-2: 80px;
+    --spacing-3: 120px;
+}
+/* Reset and Base */
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;border-radius:var(--radius);}
+body{font-family:'Inter',sans-serif;font-weight:400;font-size:1rem;line-height:1.8;color:var(--clr-text);background-color:var(--clr-bg);margin:0;}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.4;color:var(--clr-primary);}
+/* Typography */
+ h1{font-size:3rem;font-weight:700;letter-spacing:0.02em;margin:0 0 var(--spacing-0) 0;}
+ h2{font-size:2.4rem;font-weight:700;letter-spacing:0.02em;margin:0 0 var(--spacing-0) 0;}
+ h3{font-size:1.8rem;font-weight:700;letter-spacing:0.02em;margin:0 0 var(--spacing-0) 0;}
+ p{margin:0 0 var(--spacing-0) 0;}
+/* Container */
+.container{max-width:var(--max-width);margin:auto;overflow:hidden;padding:0 var(--spacing-0);}
+/* Sections */
+section{padding-top:var(--spacing-2);padding-bottom:var(--spacing-2);} 
+/* Nav */
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.7);backdrop-filter:blur(10px);box-shadow:var(--shadow-light);}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;}
+.navbar nav a{display:inline-block;margin:0 var(--spacing-0);font-weight:600;transition:color 0.3s ease;}
+.navbar nav a.active{color:var(--clr-accent);} 
+/* Hero */
+.hero{background:url('https://images.unsplash.com/photo-1525097487452-5e0ddc09f1b8?auto=format&fit=crop&w=1200&q=85') center/cover no-repeat;position:relative;min-height:80vh;color:#fff;display:flex;align-items:center;}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.3),rgba(0,0,0,0.7));}
+.hero .container{position:relative;z-index:1;text-align:center;}
+.hero h1{font-size:4rem;font-weight:700;margin-bottom:var(--spacing-0);}
+.hero p{font-size:1.25rem;margin-bottom:var(--spacing-1);}
+.hero .btn{background:var(--clr-accent);color:#fff;padding:12px 30px;border-radius:var(--radius);font-weight:600;transition:background 0.3s ease;display:inline-block;}
+.hero .btn:hover{background:darken(var(--clr-accent),10%);}
+/* Card Grid */
+.cards{display:grid;gap:var(--spacing-1);grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.card{background:var(--clr-bg-alt);box-shadow:var(--shadow-light);border-radius:var(--radius);overflow:hidden;transition:transform 0.3s ease,box-shadow 0.3s ease;}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-medium);}
+.card img{object-fit:cover;height:200px;}
+.card .content{padding:var(--spacing-0);}
+.card h3{font-size:1.4rem;margin-bottom:var(--spacing-0);}
+.card p{font-size:0.95rem;margin-bottom:var(--spacing-0);color:var(--clr-text-light);}
+/* Testimonials */
+.testimonial{background:var(--clr-primary);color:#fff;display:flex;flex-direction:column;align-items:center;padding:var(--spacing-2);border-radius:var(--radius);}
+.testimonial p{font-size:1.2rem;max-width:800px;text-align:center;margin:0 0 var(--spacing-0) 0;}
+.testimonial .author{font-weight:600;margin-top:auto;}
+/* Footer */
+footer{background:var(--clr-primary);color:#fff;padding:var(--spacing-2);font-size:0.9rem;}
+footer .container{display:flex;flex-wrap:wrap;justify-content:space-between;}
+footer nav a{display:block;margin-bottom:8px;color:#fff;}
+footer .logo{font-weight:700;font-size:1.5rem;}
+/* Utility */
+.hide-on-mobile{display:block;}
+@media(max-width:768px){
+  .hide-on-mobile{display:none;}
+  .hero h1{font-size:2.5rem;}
+}
+</style>
+</head>
+<body>
+<header class="navbar">
+  <div class="container">
+    <a href="#" class="logo">Honeymoon Bliss</a>
+    <nav>
+      <a href="#hero" class="active">Home</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<section id="hero" class="hero">
+  <div class="container">
+    <h1>Design your unforgettable honeymoon</h1>
+    <p>From secluded beach villas to romantic city escapes, we curate every detail.</p>
+    <a href="#booking" class="btn">Start Planning</a>
+  </div>
+</section>
+<section id="destinations" class="container">
+  <h2>Top Honeymoon Destinations</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1517685357880-1b4b3c89a7ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzQ4NDB8MHwxfHNlYXJjaHwxfHx0b3JlY3VtYWR8ZW58MHx8fHwxNjk1NzEwNjg4&ixlib=rb-4.0.3&q=80&w=800" alt="Santorini">
+      <div class="content">
+        <h3>Santorini, Greece</h3>
+        <p>Whitewashed cliffs and crystal turquoise waters set the stage for a romantic getaway.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1526378720192-0b6b1b23b8c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzQ4NDB8MHwxfHNlYXJjaHwxfHxvZGJhcnklMjBpZGVudWxhaXxlbnwwfHx8fDE2OTU3MTA2ODc&ixlib=rb-4.0.3&q=80&w=800" alt="Bali">
+      <div class="content">
+        <h3>Bali, Indonesia</h3>
+        <p>A blend of lush rice terraces and serene beaches for a truly magical honeymoon.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1537487847724-5e1bca7a3de2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzQ4NDB8MHwxfHNlYXJjaHwxfHx0b3JlY3VtYWR8ZW58MHx8fHwxNjk1NzEwNzA3&ixlib=rb-4.0.3&q=80&w=800" alt="Venice">
+      <div class="content">
+        <h3>Venice, Italy</h3>
+        <p>Gondola rides and candlelit evenings make this city a timeless romantic destination.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="experiences" class="container">
+  <h2>Custom Honeymoon Experiences</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1491553895911-0055de3afba8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzQ4NDB8MHwxfHNlYXJjaHwxfHxpbWVkaWF8ZW58MHx8fHwxNjk1NzEwNzU3&ixlib=rb-4.0.3&q=80&w=800" alt="Private Dinner">
+      <div class="content">
+        <h3>Private Beach Dinner</h3>
+        <p>Overwater candlelight meals, curated menus, and personalized service.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1534474477924-8b3f2b7e7c6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzQ4NDB8MHwxfHNlYXJjaHwxfHxjcm93eS1tYW5hbGxlcmNoaWF8ZW58MHx8fHwxNjk1NzEwNzgz&ixlib=rb-4.0.3&q=80&w=800" alt="Island Hopping">
+      <div class="content">
+        <h3>Island Hopping Tours</h3>
+        <p>Explore hidden coves and secluded snorkeling spots with expert guides.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1547545941-4ba6d0dc9b4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzQ4NDB8MHwxfHNlYXJjaHwxfHxza2luZy1uZXZlbHN8ZW58MHx8fHwxNjk1NzEwODA5&ixlib=rb-4.0.3&q=80&w=800" alt="Spa Retreat">
+      <div class="content">
+        <h3>Luxury Spa Retreats</h3>
+        <p>Wellness treatments tailored to couples for a rejuvenating experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="testimonials" class="testimonial">
+  <p>"We couldn't believe how seamless everything was. From the sunset dinner to the private villa, every moment was exactly what we imagined.”</p>
+  <div class="author">— Evelyn & James, 2025</div>
+</section>
+<section id="contact" class="container">
+  <h2>Get in Touch</h2>
+  <form action="#" method="post" style="display:flex;flex-direction:column;gap:var(--spacing-0);max-width:600px;margin:auto;">
+    <input type="text" placeholder="Your Name" required style="padding:12px;border:1px solid var(--clr-text-light);border-radius:var(--radius);">
+    <input type="email" placeholder="Your Email" required style="padding:12px;border:1px solid var(--clr-text-light);border-radius:var(--radius);">
+    <textarea placeholder="Message" rows="4" required style="padding:12px;border:1px solid var(--clr-text-light);border-radius:var(--radius);"></textarea>
+    <button type="submit" style="background:var(--clr-accent);color:#fff;padding:12px;border:none;border-radius:var(--radius);font-weight:600;cursor:pointer;transition:background 0.3s ease;">Send Message</button>
+  </form>
+</section>
+<footer>
+  <div class="container">
+    <div class="logo">Honeymoon Bliss</div>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div>&copy; 2026 Honeymoon Bliss. All rights reserved.</div>
+  </div>
+</footer>
+</body>
+</html>

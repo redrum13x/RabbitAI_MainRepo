@@ -1,0 +1,42 @@
+# OpenClaw Security - DO NOT COMMIT THESE
+
+# Credentials and secrets
+*.key
+*.pem
+*.secret
+*credentials*
+*token*
+.env
+.env.*
+
+# OpenClaw config (contains tokens)
+openclaw.json
+
+# Memory files that might contain sensitive info
+memory/heartbeat-state.json
+
+# Private workspace content
+workspace-private/
+
+# Kanban private tasks (local only)
+kanban/private-tasks.json
+
+# Session data
+sessions/
+*.jsonl
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Temp files
+*.tmp
+*.temp

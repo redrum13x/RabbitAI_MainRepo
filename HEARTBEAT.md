@@ -1,5 +1,6 @@
 # HEARTBEAT.md
 
-# Keep this file empty (or with only comments) to skip heartbeat API calls.
-
-# Add tasks below when you want the agent to check something periodically.
+## Health Monitor
+Run: `powershell -ExecutionPolicy Bypass -File "C:\Users\Grant\.openclaw\workspace\tools\health-monitor.ps1"`
+- If output contains "HEALTH_ALERT" → notify Grant with details
+- If "HEALTH_OK" → no action needed
